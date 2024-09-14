@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In</title>
+<link rel="icon" href="https://portfolio.ayushacharya5.com.np/images/profile.jpeg" type="image/jpeg">
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #f06, #4a90e2);
+    }
+    form {
+        text-align: center;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    label {
+        display: block;
+        text-align: left;
+        margin-bottom: 8px;
+        color: #333;
+        font-size: 16px;
+    }
+    .input-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 12px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+        outline: none;
+    }
+    .input-container .eye-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+        color: #888;
+    }
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 14px;
+        justify-content: flex-start;
+        color: #333;
+    }
+    .checkbox-container input {
+        margin-right: 10px;
+        width: 16px;
+        height: 16px;
+    }
+    button {
+        background-color: #4a90e2;
+        color: #fff;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #357ABD;
+    }
+    p.error-message {
+        color: #ff0000;
+        margin-top: 20px;
+        font-size: 14px;
+        display: none;
+    }
+    @media only screen and (max-width: 600px) {
+        form {
+            padding: 20px;
+            border-radius: 12px;
+        }
+        h2 {
+            font-size: 22px;
+        }
+        label, input, button {
+            font-size: 14px;
+        }
+        button {
+            padding: 12px 24px;
+        }
+    }
+</style>
+</head>
+<body>
+<form id="loginForm">
+    <h2>Log In</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required> <p></p>
+    <label for="password">Password:</label>
+    <div class="input-container">
+        <input type="password" id="password" name="password" required>
+        <span class="eye-icon" onclick="togglePasswordVisibility()">👁️</span>
+    </div>
+    <div class="checkbox-container">
+        <input type="checkbox" id="rememberMe">
+        <label for="rememberMe">Remember Me</label>
+    </div>
+    <button type="button" onclick="validateLogin()">Log In</button>
+    <p class="error-message" id="errorMessage">Incorrect username or password. Please try again.</p>
+</form>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+
+    function btoaUtf8(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function atobUtf8(str) {
+        return decodeURIComponent(escape(atob(str)));
+    }
+
+    function validateLogin() {
+        var enteredUsername = document.getElementById("username").value;
+        var enteredPassword = document.getElementById("password").value;
+        var correctUsername = atobUtf8("YXl1c2hhY2hhcnlh");
+        var correctPassword = atobUtf8("QXl1c2hAMDUwNg==");
+        var rememberMe = document.getElementById("rememberMe").checked;
+
+        if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
+            if (rememberMe) {
+                localStorage.setItem("rememberMe", true);
+                localStorage.setItem("username", btoaUtf8(enteredUsername));
+                localStorage.setItem("password", btoaUtf8(enteredPassword));
+            } else {
+                localStorage.removeItem("rememberMe");
+                localStorage.removeItem("username");
+                localStorage.removeItem("password");
+            }
+            window.location.href = "https://filemanager.ai/new/#/c/185.27.134.11/epiz_27759054/eyJ0IjoiZnRwIiwiYyI6eyJwIjoiUkhmTUc0ZlVVbHBQNkMiLCJpIjoiL3BvcnRmb2xpby5heXVzaGFjaGFyeWE1LmNvbS5ucC9odGRvY3MiLCJzIjoxLCJ2IjoxfX0%3D";
+        } else {
+            document.getElementById("errorMessage").style.display = "block";
+        }
+    }
+
+    window.onload = function() {
+        if (localStorage.getItem("rememberMe") === "true") {
+            document.getElementById("username").value = atobUtf8(localStorage.getItem("username"));
+            document.getElementById("password").value = atobUtf8(localStorage.getItem("password"));
+            document.getElementById("rememberMe").checked = true;
+        }
+    }
+</script>
+</body>
+</html>
