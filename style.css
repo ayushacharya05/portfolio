@@ -1,4 +1,4 @@
-/*  import google fonts */
+no/*  import google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
 *{
@@ -293,7 +293,7 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 .services .serv-content .card i{
     font-size: 50px;
-    color: crimson;
+    color: grey;
     transition: color 0.2s ease;
 }
 .services .serv-content .card:hover i{
