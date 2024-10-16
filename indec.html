@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .name {
+            font-size: 24px;
+            margin: 10px 0 5px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-style: italic;
+            color: gray;
+        }
+
+        .social-media {
+            margin: 10px 0;
+        }
+
+        .icon {
+            margin: 0 5px;
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .icon:hover {
+            color: #007BFF; /* Example hover color */
+        }
+
+        .bio {
+            margin: 20px 0;
+        }
+
+        .skills {
+            margin: 20px 0;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+        }
+
+        .experience, .education {
+            margin: 20px 0;
+        }
+
+        .job, .edu {
+            margin-bottom: 15px;
+        }
+
+        .date {
+            float: right;
+            color: gray;
+        }
+
+        .contact-button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+            transition: background 0.3s;
+        }
+
+        .contact-button:hover {
+            background: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="header">
+            <img src="profile.jpg" alt="Profile Image" class="profile-image">
+            <h1 class="name">John Doe</h1>
+            <p class="title">Web Developer</p>
+            <div class="social-media">
+                <a href="#" class="icon">🔗</a>
+                <a href="#" class="icon">🐦</a>
+                <a href="#" class="icon">🐙</a>
+                <a href="#" class="icon">🌐</a>
+            </div>
+        </div>
+        <div class="bio">
+            <p>Passionate web developer with 5+ years of experience in building responsive websites.</p>
+        </div>
+        <div class="skills">
+            <h2>Skills</h2>
+            <div class="skill-tag">HTML</div>
+            <div class="skill-tag">CSS</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">React</div>
+        </div>
+        <div class="experience">
+            <h2>Experience</h2>
+            <div class="job">
+                <strong>Senior Developer</strong> - Company A <span class="date">Jan 2020 - Present</span>
+                <p>Responsible for front-end development and team leadership.</p>
+            </div>
+            <div class="job">
+                <strong>Junior Developer</strong> - Company B <span class="date">Jan 2018 - Dec 2019</span>
+                <p>Worked on various web projects and collaborated with designers.</p>
+            </div>
+        </div>
+        <div class="education">
+            <h2>Education</h2>
+            <div class="edu">
+                <strong>Bachelor of Science in Computer Science</strong> - University C
+                <span class="date">2014 - 2018</span>
+            </div>
+        </div>
+        <button class="contact-button">Contact Me</button>
+    </div>
+</body>
+</html>
