@@ -3,150 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Profile</title>
+    <title>Ayush Acharya</title>
+    <!-- Link to Favicon -->
+    <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-256/free-b-characters-character-alphabet-letter-36044.png" type="image/x-icon">
+    <!-- Link to Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
-        }
-
-        .profile-container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://media.istockphoto.com/id/1175053786/photo/empty-dark-blue-with-black-vignette-studio-well-use-as-background.webp?b=1&s=170667a&w=0&k=20&c=9nhEI3-wIOd3x6nWXP-jcC5Rybfr52YDU_dI2QScNoE=') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
         }
 
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            width: 80%;
+            max-width: 300px;
+        }
+
         .profile-image {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid #fff;
+            animation: fadeIn 1.5s;
         }
 
-        .name {
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin: 0;
             font-size: 24px;
-            margin: 10px 0 5px;
+            color: #333;
+            font-weight: 500;
         }
 
-        .title {
-            font-size: 16px;
-            font-style: italic;
-            color: gray;
+        .social-icons {
+            margin-top: 15px;
         }
 
-        .social-media {
-            margin: 10px 0;
-        }
-
-        .icon {
-            margin: 0 5px;
+        .social-icons a {
+            margin: 0 8px;
             text-decoration: none;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-
-        .icon:hover {
-            color: #007BFF; /* Example hover color */
-        }
-
-        .bio {
-            margin: 20px 0;
-        }
-
-        .skills {
-            margin: 20px 0;
-        }
-
-        .skill-tag {
+            color: #fff;
+            font-size: 22px;
             display: inline-block;
-            background: #007BFF;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin: 5px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .experience, .education {
-            margin: 20px 0;
+        .social-icons a:hover {
+            transform: scale(1.1);
         }
 
-        .job, .edu {
-            margin-bottom: 15px;
+        .social-icons a:nth-child(1) {
+            background-color: #3b5998; /* Facebook */
         }
 
-        .date {
-            float: right;
-            color: gray;
+        .social-icons a:nth-child(1):hover {
+            background-color: #2d4373;
         }
 
-        .contact-button {
-            background: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            margin: 20px auto 0;
-            transition: background 0.3s;
+        .social-icons a:nth-child(2) {
+            background-color: #ff0000; /* YouTube */
         }
 
-        .contact-button:hover {
-            background: #0056b3; /* Darker shade on hover */
+        .social-icons a:nth-child(2):hover {
+            background-color: #cc0000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .profile-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .social-icons a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .profile-image {
+                width: 90px;
+                height: 90px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .social-icons a {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 18px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="header">
-            <img src="profile.jpg" alt="Profile Image" class="profile-image">
-            <h1 class="name">John Doe</h1>
-            <p class="title">Web Developer</p>
-            <div class="social-media">
-                <a href="#" class="icon">🔗</a>
-                <a href="#" class="icon">🐦</a>
-                <a href="#" class="icon">🐙</a>
-                <a href="#" class="icon">🌐</a>
-            </div>
+    <div class="container">
+        <div class="profile-image">
+            <img src="" alt="Profile Image">
         </div>
-        <div class="bio">
-            <p>Passionate web developer with 5+ years of experience in building responsive websites.</p>
+        <h1>Ayush Acharya</h1>
+        <div class="social-icons">
+            <a href=" " target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href=" " target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
-        <div class="skills">
-            <h2>Skills</h2>
-            <div class="skill-tag">HTML</div>
-            <div class="skill-tag">CSS</div>
-            <div class="skill-tag">JavaScript</div>
-            <div class="skill-tag">React</div>
-        </div>
-        <div class="experience">
-            <h2>Experience</h2>
-            <div class="job">
-                <strong>Senior Developer</strong> - Company A <span class="date">Jan 2020 - Present</span>
-                <p>Responsible for front-end development and team leadership.</p>
-            </div>
-            <div class="job">
-                <strong>Junior Developer</strong> - Company B <span class="date">Jan 2018 - Dec 2019</span>
-                <p>Worked on various web projects and collaborated with designers.</p>
-            </div>
-        </div>
-        <div class="education">
-            <h2>Education</h2>
-            <div class="edu">
-                <strong>Bachelor of Science in Computer Science</strong> - University C
-                <span class="date">2014 - 2018</span>
-            </div>
-        </div>
-        <button class="contact-button">Contact Me</button>
     </div>
 </body>
 </html>
