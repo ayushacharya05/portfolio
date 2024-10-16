@@ -8,43 +8,44 @@
     <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-256/free-b-characters-character-alphabet-letter-36044.png" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Font for Professional Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* Global styles */
+        * {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: url('https://media.istockphoto.com/id/1175053786/photo/empty-dark-blue-with-black-vignette-studio-well-use-as-background.webp?b=1&s=170667a&w=0&k=20&c=9nhEI3-wIOd3x6nWXP-jcC5Rybfr52YDU_dI2QScNoE=') no-repeat center center fixed;
-            background-size: cover;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
-            color: #fff;
+            min-height: 100vh;
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.75); /* Darken container background for contrast */
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            width: 85%;
-            max-width: 350px;
-            transition: transform 0.3s ease;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
-        }
-
+        /* Profile Image */
         .profile-image {
-            width: 130px;
-            height: 130px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto 20px;
-            border: 4px solid #fff;
+            border: 5px solid #eee;
             animation: fadeIn 1.2s ease-in-out;
         }
 
@@ -54,94 +55,113 @@
             object-fit: cover;
         }
 
+        /* Heading */
         h1 {
-            margin: 0;
             font-size: 28px;
-            color: #fff;
-            font-family: 'Raleway', sans-serif;
             font-weight: 700;
-            animation: fadeIn 1.5s ease-in-out;
+            color: #333;
+            margin-bottom: 10px;
         }
 
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        /* Social Icons */
         .social-icons {
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         .social-icons a {
-            margin: 0 12px;
-            text-decoration: none;
             color: #fff;
-            font-size: 22px;
+            font-size: 20px;
             display: inline-block;
-            width: 45px;
-            height: 45px;
-            line-height: 45px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 10px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.15); /* Subtle background color for icons */
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         .social-icons a:hover {
-            transform: scale(1.2);
-            background-color: #fff;
-            color: #333;
+            transform: scale(1.1);
         }
 
         .social-icons a:nth-child(1) {
             background-color: #3b5998; /* Facebook */
         }
 
-        .social-icons a:nth-child(1):hover {
-            background-color: #2d4373;
-        }
-
         .social-icons a:nth-child(2) {
             background-color: #ff0000; /* YouTube */
         }
 
-        .social-icons a:nth-child(2):hover {
-            background-color: #cc0000;
+        /* Button */
+        .cta-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #999;
         }
 
         @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-
             .profile-image {
-                width: 110px;
-                height: 110px;
+                width: 120px;
+                height: 120px;
             }
 
             h1 {
                 font-size: 24px;
             }
 
+            p {
+                font-size: 14px;
+            }
+
             .social-icons a {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-
             .profile-image {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
 
             h1 {
-                font-size: 22px;
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
             }
 
             .social-icons a {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
         }
 
@@ -152,15 +172,31 @@
     </style>
 </head>
 <body>
+
     <div class="container">
+        <!-- Profile Image -->
         <div class="profile-image">
-            <img src="" alt="Profile Image">
+            <img src="https://yt3.googleusercontent.com/bZ9My7yTx5H82IUElUlDBv1t2rG0qyp83AT2xZ1_OOBBYf53GT_EWkUkDu4PdyjgOX2KBozb2A=s160-c-k-c0x00ffffff-no-rj" alt="Profile Image">
         </div>
+
+        <!-- Profile Information -->
         <h1>Ayush Acharya</h1>
+        <p>Technology Enthusiast | Web Developer | YouTube Creator</p>
+
+        <!-- Social Icons -->
         <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/ayushacharya0506?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/@ayushacharya05?si=xds3TCDzzHwldt85" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
+
+        <!-- Call to Action Button -->
+ <!-- <a href="#" class="cta-button">View My Work</a>-->
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2024 Ayush Acharya. All Rights Reserved.
+        </footer>
     </div>
+
 </body>
 </html>
