@@ -3,46 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My blog | Management</title>
+    <title>My blog | Admin Console</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #6366f1; --secondary: #a855f7; --dark: #0f172a; --bg: #f8fafc; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: var(--dark); }
 
-        header { padding: 4rem 1rem; text-align: center; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        header h1 { font-size: 3rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Header */
+        header { padding: 5rem 1rem 3rem; text-align: center; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        header h1 { font-size: 3.5rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        /* User Icon - Top Right */
+        #admin-trigger { 
+            position: absolute; top: 25px; right: 30px; 
+            background: white; border: 2px solid #e2e8f0; color: var(--dark); 
+            width: 50px; height: 50px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; z-index: 1000; transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        #admin-trigger:hover { border-color: var(--primary); transform: scale(1.1); }
+        #admin-trigger svg { width: 24px; height: 24px; fill: currentColor; }
+
+        /* Blog Layout */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
         #blog-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
 
-        .post-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; padding: 25px; position: relative; }
-        .category { font-size: 0.7rem; text-transform: uppercase; color: var(--primary); font-weight: 700; }
-        .post-card h3 { margin: 10px 0; }
-        .post-card p { color: #64748b; font-size: 0.95rem; }
+        .post-card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); position: relative; border: 1px solid #f1f5f9; }
+        .category { font-size: 0.75rem; text-transform: uppercase; color: var(--primary); font-weight: 700; background: #eef2ff; padding: 4px 10px; border-radius: 6px; }
+        .post-card h3 { margin: 15px 0 10px; font-size: 1.4rem; }
+        .post-card p { color: #64748b; font-size: 1rem; line-height: 1.6; }
 
-        /* Admin Action Buttons */
-        .admin-actions { margin-top: 15px; display: none; gap: 10px; border-top: 1px solid #eee; padding-top: 15px; }
-        .btn-sm { padding: 8px 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: 0.2s; }
-        .edit-btn { background: #e0e7ff; color: var(--primary); }
-        .del-btn { background: #fee2e2; color: #ef4444; }
+        /* Admin Controls on Cards */
+        .admin-actions { margin-top: 20px; display: none; gap: 10px; padding-top: 15px; border-top: 1px solid #f1f5f9; }
+        .btn-sm { flex: 1; padding: 10px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+        .edit-btn { background: #6366f115; color: var(--primary); }
+        .del-btn { background: #ef444415; color: #ef4444; }
 
-        /* Admin Floating UI */
-        #admin-trigger { position: fixed; right: 30px; bottom: 30px; background: var(--dark); color: white; width: 55px; height: 55px; border-radius: 15px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 24px; width: 90%; max-width: 500px; }
+        /* Modal Overlay */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 24px; width: 90%; max-width: 450px; }
         
-        input, textarea { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; margin-top: 10px; }
-        .btn-main { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 20px; }
+        input, textarea { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; margin-top: 12px; font-size: 1rem; }
+        .btn-main { background: var(--dark); color: white; border: none; padding: 15px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 20px; transition: 0.3s; }
+        .btn-main:hover { background: var(--primary); }
         
-        #empty-state { text-align: center; grid-column: 1 / -1; padding: 50px; color: #94a3b8; }
+        #empty-state { text-align: center; grid-column: 1 / -1; padding: 100px 0; color: #94a3b8; }
     </style>
 </head>
 <body>
 
+    <div id="admin-trigger" onclick="openModal()">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+    </div>
+
     <header>
         <h1>My blog</h1>
-        <p>Your thoughts, perfectly organized.</p>
+        <p>A digital journal for the modern creator</p>
     </header>
 
     <div class="container">
@@ -50,127 +68,127 @@
             </div>
     </div>
 
-    <div id="admin-trigger" onclick="openLogin()">⚙️</div>
-
     <div id="admin-modal" class="modal">
         <div class="modal-content">
             <div id="login-ui">
-                <h2>Admin Login</h2>
-                <input type="password" id="passcode" placeholder="Enter Passcode (0506)">
-                <button class="btn-main" onclick="checkPasscode()">Unlock</button>
-                <button class="btn-main" style="background:none; color: #64748b;" onclick="closeModal()">Cancel</button>
+                <h2 style="margin-bottom: 5px;">Admin Login</h2>
+                <p style="color: #64748b; margin-bottom: 20px;">Secure Access Only</p>
+                <input type="password" id="passcode" placeholder="Passcode (0506)">
+                <button class="btn-main" onclick="handleLogin()">Login</button>
+                <button class="btn-main" style="background:none; color: #94a3b8;" onclick="closeModal()">Cancel</button>
             </div>
 
             <div id="dashboard-ui" style="display:none;">
-                <h2 id="form-title">New Post</h2>
+                <h2 id="form-title">Create Post</h2>
                 <input type="hidden" id="edit-index" value="-1">
-                <input type="text" id="post-title" placeholder="Title">
-                <input type="text" id="post-category" placeholder="Category">
-                <textarea id="post-body" rows="5" placeholder="Content"></textarea>
-                <button class="btn-main" id="save-btn" onclick="savePost()">Publish Post</button>
-                <button class="btn-main" style="background: #ef4444;" onclick="logout()">Logout</button>
+                <input type="text" id="post-title" placeholder="Post Title">
+                <input type="text" id="post-category" placeholder="Category (e.g. Life, Tech)">
+                <textarea id="post-body" rows="6" placeholder="Write your content..."></textarea>
+                <button class="btn-main" id="save-btn" onclick="savePost()">Publish</button>
+                <button class="btn-main" style="background: #ef444415; color: #ef4444; margin-top: 10px;" onclick="handleLogout()">Logout</button>
             </div>
         </div>
     </div>
 
     <script>
-        const PASSCODE = "0506";
-        let isAdmin = false;
-        // Start with empty array (no presets)
-        let posts = JSON.parse(localStorage.getItem('crud_blog_posts')) || [];
+        const PIN = "0506";
+        let authenticated = false;
+        let blogData = JSON.parse(localStorage.getItem('my_pro_blog')) || [];
 
-        function renderPosts() {
-            const container = document.getElementById('blog-posts');
-            if (posts.length === 0) {
-                container.innerHTML = `<div id="empty-state"><h3>No posts yet. Click the gear icon to add one!</h3></div>`;
+        function render() {
+            const list = document.getElementById('blog-posts');
+            if (blogData.length === 0) {
+                list.innerHTML = `<div id="empty-state"><h3>Your blog is empty. Login to write your first story!</h3></div>`;
                 return;
             }
 
-            container.innerHTML = posts.map((post, index) => `
+            list.innerHTML = blogData.map((item, i) => `
                 <div class="post-card">
-                    <span class="category">${post.category}</span>
-                    <h3>${post.title}</h3>
-                    <p>${post.body}</p>
-                    <div class="admin-actions" style="display: ${isAdmin ? 'flex' : 'none'}">
-                        <button class="btn-sm edit-btn" onclick="editPost(${index})">Edit</button>
-                        <button class="btn-sm del-btn" onclick="deletePost(${index})">Delete</button>
+                    <span class="category">${item.category}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.body}</p>
+                    <div class="admin-actions" style="display: ${authenticated ? 'flex' : 'none'}">
+                        <button class="btn-sm edit-btn" onclick="initEdit(${i})">Edit</button>
+                        <button class="btn-sm del-btn" onclick="handleDelete(${i})">Delete</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('admin-modal').style.display = 'none'; resetForm(); }
+        // Modal Controls
+        function openModal() { document.getElementById('admin-modal').style.display = 'flex'; }
+        function closeModal() { 
+            document.getElementById('admin-modal').style.display = 'none'; 
+            resetInputs();
+        }
 
-        function checkPasscode() {
-            if (document.getElementById('passcode').value === PASSCODE) {
-                isAdmin = true;
+        // Auth Logic
+        function handleLogin() {
+            const input = document.getElementById('passcode').value;
+            if (input === PIN) {
+                authenticated = true;
                 document.getElementById('login-ui').style.display = 'none';
                 document.getElementById('dashboard-ui').style.display = 'block';
-                renderPosts();
-            } else { alert("Wrong passcode!"); }
+                render();
+            } else { alert("Access Denied."); }
         }
 
+        function handleLogout() {
+            authenticated = false;
+            document.getElementById('login-ui').style.display = 'block';
+            document.getElementById('dashboard-ui').style.display = 'none';
+            document.getElementById('passcode').value = '';
+            render();
+            closeModal();
+        }
+
+        // Blog Logic
         function savePost() {
-            const title = document.getElementById('post-title').value;
-            const category = document.getElementById('post-category').value;
-            const body = document.getElementById('post-body').value;
-            const editIndex = parseInt(document.getElementById('edit-index').value);
+            const t = document.getElementById('post-title').value;
+            const c = document.getElementById('post-category').value;
+            const b = document.getElementById('post-body').value;
+            const idx = parseInt(document.getElementById('edit-index').value);
 
-            if (title && category && body) {
-                const postData = { title, category, body };
-                if (editIndex > -1) {
-                    posts[editIndex] = postData;
+            if (t && c && b) {
+                if (idx > -1) {
+                    blogData[idx] = { title: t, category: c, body: b };
                 } else {
-                    posts.unshift(postData);
+                    blogData.unshift({ title: t, category: c, body: b });
                 }
-                localStorage.setItem('crud_blog_posts', JSON.stringify(posts));
-                renderPosts();
+                localStorage.setItem('my_pro_blog', JSON.stringify(blogData));
+                render();
                 closeModal();
+            } else { alert("Please fill everything!"); }
+        }
+
+        function initEdit(i) {
+            document.getElementById('form-title').innerText = "Update Post";
+            document.getElementById('save-btn').innerText = "Update Now";
+            document.getElementById('edit-index').value = i;
+            document.getElementById('post-title').value = blogData[i].title;
+            document.getElementById('post-category').value = blogData[i].category;
+            document.getElementById('post-body').value = blogData[i].body;
+            openModal();
+        }
+
+        function handleDelete(i) {
+            if (confirm("Delete this post?")) {
+                blogData.splice(i, 1);
+                localStorage.setItem('my_pro_blog', JSON.stringify(blogData));
+                render();
             }
         }
 
-        function editPost(index) {
-            openLogin();
-            document.getElementById('login-ui').style.display = 'none';
-            document.getElementById('dashboard-ui').style.display = 'block';
-            
-            document.getElementById('form-title').innerText = "Edit Post";
-            document.getElementById('save-btn').innerText = "Update Post";
-            document.getElementById('edit-index').value = index;
-            
-            document.getElementById('post-title').value = posts[index].title;
-            document.getElementById('post-category').value = posts[index].category;
-            document.getElementById('post-body').value = posts[index].body;
-        }
-
-        function deletePost(index) {
-            if (confirm("Delete this post permanently?")) {
-                posts.splice(index, 1);
-                localStorage.setItem('crud_blog_posts', JSON.stringify(posts));
-                renderPosts();
-            }
-        }
-
-        function resetForm() {
-            document.getElementById('form-title').innerText = "New Post";
-            document.getElementById('save-btn').innerText = "Publish Post";
+        function resetInputs() {
+            document.getElementById('form-title').innerText = "Create Post";
+            document.getElementById('save-btn').innerText = "Publish";
             document.getElementById('edit-index').value = "-1";
             document.getElementById('post-title').value = '';
             document.getElementById('post-category').value = '';
             document.getElementById('post-body').value = '';
         }
 
-        function logout() {
-            isAdmin = false;
-            document.getElementById('login-ui').style.display = 'block';
-            document.getElementById('dashboard-ui').style.display = 'none';
-            document.getElementById('passcode').value = '';
-            renderPosts();
-            closeModal();
-        }
-
-        renderPosts();
+        render();
     </script>
 </body>
 </html>
