@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My blog</title>
+    <title>My blog | Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #6366f1; --secondary: #a855f7; --dark: #0f172a; --bg: #f8fafc; }
@@ -136,4 +136,41 @@
             document.getElementById('dashboard-ui').style.display = 'block';
             
             document.getElementById('form-title').innerText = "Edit Post";
-            document.getElementById
+            document.getElementById('save-btn').innerText = "Update Post";
+            document.getElementById('edit-index').value = index;
+            
+            document.getElementById('post-title').value = posts[index].title;
+            document.getElementById('post-category').value = posts[index].category;
+            document.getElementById('post-body').value = posts[index].body;
+        }
+
+        function deletePost(index) {
+            if (confirm("Delete this post permanently?")) {
+                posts.splice(index, 1);
+                localStorage.setItem('crud_blog_posts', JSON.stringify(posts));
+                renderPosts();
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('form-title').innerText = "New Post";
+            document.getElementById('save-btn').innerText = "Publish Post";
+            document.getElementById('edit-index').value = "-1";
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-category').value = '';
+            document.getElementById('post-body').value = '';
+        }
+
+        function logout() {
+            isAdmin = false;
+            document.getElementById('login-ui').style.display = 'block';
+            document.getElementById('dashboard-ui').style.display = 'none';
+            document.getElementById('passcode').value = '';
+            renderPosts();
+            closeModal();
+        }
+
+        renderPosts();
+    </script>
+</body>
+</html>
