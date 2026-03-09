@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Blog</title>
+    <style>
+        /* Basic Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f4f4f4; color: #333; }
+
+        /* Navigation */
+        nav { background: #2c3e50; color: #fff; padding: 1rem; position: sticky; top: 0; z-index: 100; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: auto; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+
+        /* Main Layout */
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 20px; display: grid; grid-template-columns: 3fr 1fr; gap: 20px; }
+
+        /* Blog Posts */
+        article { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        article h2 { color: #2c3e50; margin-bottom: 10px; }
+        .meta { font-size: 0.8rem; color: #777; margin-bottom: 15px; }
+        .read-more { display: inline-block; margin-top: 15px; color: #3498db; text-decoration: none; font-weight: bold; }
+
+        /* Sidebar */
+        aside { background: #fff; padding: 20px; border-radius: 8px; height: fit-content; }
+        aside h3 { margin-bottom: 10px; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+
+        /* Footer */
+        footer { text-align: center; padding: 2rem; background: #2c3e50; color: white; margin-top: 40px; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <h1>MyBlog</h1>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <article>
+                <h2>Exploring the Wonders of Web Development</h2>
+                <p class="meta">Posted on March 9, 2026 by Admin</p>
+                <p>Today, we dive into the world of HTML and CSS. Building your own blog is the first step toward digital independence...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+
+            <article>
+                <h2>Why I Started This Blog</h2>
+                <p class="meta">Posted on March 5, 2026 by Admin</p>
+                <p>Everyone has a story to tell. I realized that sharing my journey could help others who are just starting out...</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+        </main>
+
+        <aside>
+            <h3>About Me</h3>
+            <p>I'm a curious developer sharing my thoughts on tech, life, and everything in between.</p>
+            <br>
+            <h3>Categories</h3>
+            <ul>
+                <li>Coding</li>
+                <li>Lifestyle</li>
+                <li>Travel</li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
