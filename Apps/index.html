@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>आजको समाचार</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #0052D4; --surface-light: #F2F4F7; --card-bg-light: #FFFFFF;
+      --text-main-light: #1A1C1E; --surface-dark: #0E1113; --card-bg-dark: #1C1F26;
+      --accent-gold: #FFD700;
+    }
+
+    #splashScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    #splashScreen img { width: 180px; animation: logoEntrance 2s ease-in-out forwards; }
+    @keyframes logoEntrance { 0% { transform: scale(0.8); opacity: 0; } 20% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.1); opacity: 0; } }
+    
+    body { background: var(--surface-light); font-family: 'Outfit', sans-serif; color: var(--text-main-light); padding-bottom: 90px; transition: background 0.3s; overflow-x: hidden; }
+    
+    .app-header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1040; padding: 14px 20px; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; }
+    .brand-name { font-family: 'Mukta', sans-serif; font-weight: 800; font-size: 1.6rem; margin: 0; }
+    
+    .offcanvas { transition: transform 0.3s ease-in-out; border-right: none !important; width: 280px !important; }
+    .nav-link-custom { padding: 15px 20px; border-radius: 12px; color: inherit; text-decoration: none; display: flex; align-items: center; margin-bottom: 5px; font-weight: 500; }
+    .nav-link-custom i { width: 35px; color: var(--primary-color); font-size: 1.2rem; }
+
+    #categorySection { padding: 20px; display: none; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .cat-tile { background: var(--card-bg-light); border-radius: 16px; padding: 25px 10px; text-align: center; cursor: pointer; border: 1px solid rgba(0,0,0,0.05); }
+    
+    .news-card { background: var(--card-bg-light); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; margin-bottom: 20px; border: none; }
+    .news-card img { width: 100%; height: 210px; object-fit: cover; background-color: #eee; }
+    .card-content { padding: 16px; }
+    .news-title { font-family: 'Mukta', sans-serif; font-size: 1.2rem; font-weight: 700; line-height: 1.4; margin-bottom: 10px; }
+    .source-badge { background: var(--primary-color); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+    
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: grid; grid-template-columns: repeat(4, 1fr); padding: 12px 0 28px 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.08); z-index: 1030; text-align: center; border-radius: 20px 20px 0 0; }
+    .nav-item { color: #888; font-size: 0.75rem; cursor: pointer; border: none; background: none; position: relative; transition: all 0.3s ease; }
+    .nav-item i { font-size: 1.4rem; display: block; margin-bottom: 4px; transition: all 0.3s ease; }
+    .nav-item.active { color: var(--primary-color); font-weight: 700; }
+
+    #homeTab.active i { animation: navBounce 0.6s ease; }
+    @keyframes navBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    #catTab.active i { animation: navRotate 0.6s ease; }
+    @keyframes navRotate { 0% { transform: rotate(0); } 100% { transform: rotate(90deg); } }
+    #tajaTab.active i { color: var(--accent-gold); animation: navSpark 1s infinite alternate; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6)); }
+    @keyframes navSpark { 0% { transform: scale(1) translateY(-2px); filter: brightness(1); } 100% { transform: scale(1.3) translateY(-2px); filter: brightness(1.3) drop-shadow(0 0 10px gold); } }
+    #saveTab.active i { animation: navPop 0.6s ease; color: #ff4757; }
+    @keyframes navPop { 0% { transform: scale(1); } 50% { transform: scale(1.4); } 100% { transform: scale(1); } }
+
+    #newsReader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--card-bg-light); z-index: 2000; display: none; overflow-y: auto; }
+    .reader-header { position: sticky; top: 0; background: var(--card-bg-light); padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; z-index: 2001; }
+    
+    .dark-mode { background: var(--surface-dark); color: white; }
+    .dark-mode .app-header, .dark-mode .bottom-nav, .dark-mode #newsReader, .dark-mode .cat-tile, .dark-mode .offcanvas, .dark-mode .reader-header { background: var(--card-bg-dark) !important; color: white !important; border-color: #333 !important; }
+    .dark-mode .btn-close { filter: invert(1); }
+    .dark-mode .news-card { background: #252830; }
+
+    .save-btn-circle { width: 40px; height: 40px; border-radius: 50%; border: none; background: #f0f0f0; display: flex; align-items: center; justify-content: center; }
+    .save-btn-circle.saved { background: var(--primary-color); color: white; }
+  </style>
+</head>
+<body onload="initApp()">
+
+  <div id="splashScreen"><img src="https://ayushacharya5.com.np/Apps/aajakosamachar/images/icon.png" alt="Splash"></div>
+
+  <header class="app-header">
+    <div onclick="openMenu()" style="cursor:pointer"><i class="fas fa-bars-staggered fa-lg"></i></div>
+    <h1 class="brand-name">आजको समाचार</h1>
+    <div onclick="toggleDarkMode()" style="cursor:pointer"><i id="darkModeIcon" class="fas fa-moon fa-lg"></i></div>
+  </header>
+
+  <main class="container pt-3">
+    <div id="categorySection">
+        <div class="cat-tile" onclick="filterByTopic('All')"><i class="fas fa-th-large mb-2 text-primary fs-2"></i><br><span>सबै</span></div>
+        <div class="cat-tile" onclick="filterByTopic('Politics')"><i class="fas fa-landmark mb-2 text-primary fs-2"></i><br><span>राजनीति</span></div>
+        <div class="cat-tile" onclick="filterByTopic('Sports')"><i class="fas fa-trophy mb-2 text-primary fs-2"></i><br><span>खेलकुद</span></div>
+        <div class="cat-tile" onclick="filterByTopic('Tech')"><i class="fas fa-microchip mb-2 text-primary fs-2"></i><br><span>प्रविधि</span></div>
+        <div class="cat-tile" onclick="filterByTopic('Entertainment')"><i class="fas fa-film mb-2 text-primary fs-2"></i><br><span>मनोरञ्जन</span></div>
+        <div class="cat-tile" onclick="filterByTopic('Economy')"><i class="fas fa-chart-line mb-2 text-primary fs-2"></i><br><span>अर्थतन्त्र</span></div>
+    </div>
+    <div id="newsContainer"></div>
+  </main>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="brand-name">मेनु</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" onclick="history.back()"></button>
+    </div>
+    <div class="offcanvas-body">
+      <a href="https://ayushacharya5.com.np/Apps/aajakosamachar/about.html" class="nav-link-custom"><i class="fas fa-info-circle"></i> हाम्रो बारेमा</a>
+      <a href="https://ayushacharya5.com.np/Apps/aajakosamachar/support.html" class="nav-link-custom"><i class="fas fa-headset"></i> सहयोग र सम्पर्क</a>
+    </div>
+  </div>
+
+  <div id="newsReader">
+    <div class="reader-header">
+      <button class="btn btn-outline-secondary rounded-circle me-3" onclick="handleBack()"><i class="fas fa-arrow-left"></i></button>
+      <span class="fw-bold flex-grow-1">पढ्नुहोस्</span>
+      <button id="mainSaveBtn" class="save-btn-circle" onclick="toggleSaveCurrent()">
+        <i class="far fa-bookmark"></i>
+      </button>
+    </div>
+    <div class="reader-content p-3">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+          <div id="rSourceBadge" class="source-badge"></div>
+          <div id="rDate" class="post-date" style="font-family:'Mukta';"></div>
+      </div>
+      <h1 id="rTitle" class="fw-bold mb-3" style="font-family:'Mukta'"></h1>
+      <img id="rImg" class="w-100 rounded mb-3" src="" style="display:none">
+      <div id="rBody"></div>
+      <a id="rLink" href="" target="_blank" class="btn btn-primary w-100 mt-4 py-3 rounded-pill">पूरा पढ्नुहोस्</a>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item active" id="homeTab" onclick="loadNews()"><i class="fas fa-home"></i><span>होम</span></div>
+    <div class="nav-item" id="catTab" onclick="showCategoryMenu()"><i class="fas fa-th-large"></i><span>विधा</span></div>
+    <div class="nav-item" id="tajaTab" onclick="refreshTaja()"><i class="fas fa-bolt"></i><span>ताजा</span></div>
+    <div class="nav-item" id="saveTab" onclick="renderSaved()"><i class="fas fa-bookmark"></i><span>सेभ</span></div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const feeds = [
+      { name: "OnlineKhabar", url: "https://www.onlinekhabar.com/feed" },
+      { name: "Setopati", url: "https://setopati.com/feed" },
+      { name: "Ratopati", url: "https://www.ratopati.com/feed" },
+      { name: "Kantipur", url: "https://ekantipur.com/rss/news" },
+      { name: "TechPana", url: "https://www.techpana.com/feed" },
+      { name: "BBC Nepali", url: "https://www.bbc.co.uk/nepali/index.xml" },
+      { name: "Our Biratnagar", url: "https://ourbiratnagar.net/feed" },
+      { name: "Nepal Press", url: "https://www.nepalpress.com/feed" },
+      { name: "Himal Khabar", url: "https://www.himalkhabar.com/rss" },
+      { name: "Nepal News", url: "https://nepalnews.com/rss" },
+      { name: "Image Khabar", url: "https://www.imagekhabar.com/feed" },
+      { name: "Annapurna Post", url: "https://annapurnapost.com/rss" },
+      { name: "DC Nepal", url: "https://www.dcnepal.com/feed" },
+      { name: "Nepal Khabar", url: "https://nepalkhabar.com/rss" }
+    ];
+
+    let allNews = [];
+    let currentOpenItem = null;
+    let sidebarInstance = null;
+
+    function initApp() {
+      sidebarInstance = new bootstrap.Offcanvas(document.getElementById('sidebarMenu'));
+      window.onpopstate = function(event) {
+        if (document.getElementById('newsReader').style.display === 'block') closeReader(false);
+        sidebarInstance.hide();
+      };
+      setTimeout(() => { 
+          document.getElementById('splashScreen').style.display = 'none'; 
+          loadNews(); 
+       }, 2000);
+    }
+
+    function openMenu() { sidebarInstance.show(); history.pushState({view: 'menu'}, ''); }
+
+    function openReader(item) {
+      currentOpenItem = item;
+      // Enhanced image extraction to handle more sources
+      const img = item.thumbnail || item.enclosure?.link || (item.description?.match(/<img[^>]+src="([^">]+)"/)?.[1]) || '';
+      document.getElementById('rTitle').innerText = item.title;
+      document.getElementById('rSourceBadge').innerText = item.sourceName;
+      document.getElementById('rDate').innerText = formatNepaliDate(item.pubDate);
+      document.getElementById('rLink').href = item.link;
+      const rImg = document.getElementById('rImg');
+      if(img) { rImg.src = img; rImg.style.display = 'block'; } else { rImg.style.display = 'none'; }
+      document.getElementById('rBody').innerHTML = item.content || item.description || "सामग्री उपलब्ध छैन।";
+      
+      let saved = JSON.parse(localStorage.getItem('savedNews') || '[]');
+      const isSaved = saved.some(n => n.link === item.link);
+      const btn = document.getElementById('mainSaveBtn');
+      btn.className = isSaved ? 'save-btn-circle saved' : 'save-btn-circle';
+      btn.querySelector('i').className = isSaved ? 'fas fa-bookmark' : 'far fa-bookmark';
+
+      document.getElementById('newsReader').style.display = 'block';
+      history.pushState({view: 'reader'}, '');
+    }
+
+    function handleBack() { history.back(); }
+    function closeReader(shouldGoBack = true) { 
+        document.getElementById('newsReader').style.display = 'none'; 
+        if (shouldGoBack && history.state?.view === 'reader') history.back();
+        if(document.getElementById('saveTab').classList.contains('active')) renderSaved();
+    }
+
+    async function loadNews() {
+      setActiveTab('homeTab');
+      toggleView('news');
+      const container = document.getElementById('newsContainer');
+      container.innerHTML = '<div class="text-center p-5"><div class="spinner-border text-primary"></div><p class="mt-2 small text-muted">लोड हुँदैछ...</p></div>';
+      try {
+        const results = await Promise.all(feeds.map(f => fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(f.url)}`).then(r => r.json()).then(data => (data.items || []).map(item => ({...item, sourceName: f.name, topic: getTopic(item.title + (item.description || ''))}))).catch(() => [])));
+        allNews = results.flat().sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+        renderList(allNews);
+      } catch (e) { container.innerHTML = "Error."; }
+    }
+
+    function getTopic(text) {
+      text = text.toLowerCase();
+      if (text.includes('खेल')) return 'Sports';
+      if (text.includes('राजनीति')) return 'Politics';
+      if (text.includes('प्रविधि')) return 'Tech';
+      if (text.includes('अर्थ')) return 'Economy';
+      return 'General';
+    }
+
+    function renderList(list) {
+      const container = document.getElementById('newsContainer');
+      container.innerHTML = '';
+      list.forEach(item => {
+        // Handle images for list view
+        let img = item.thumbnail || item.enclosure?.link || (item.description?.match(/<img[^>]+src="([^">]+)"/)?.[1]) || '';
+        const div = document.createElement('div');
+        div.className = 'news-card';
+        div.onclick = () => openReader(item);
+        div.innerHTML = `${img ? `<img src="${img}">` : ''}<div class="card-content"><div class="card-meta d-flex justify-content-between mb-2"><span class="source-badge">${item.sourceName}</span><span style="font-family:'Mukta'; font-size:0.75rem">${formatNepaliDate(item.pubDate)}</span></div><div class="news-title">${item.title}</div></div>`;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleView(view) {
+        document.getElementById('categorySection').style.display = (view === 'category') ? 'grid' : 'none';
+        document.getElementById('newsContainer').style.display = (view === 'news') ? 'block' : 'none';
+    }
+
+    function showCategoryMenu() { setActiveTab('catTab'); toggleView('category'); }
+    function filterByTopic(topic) { toggleView('news'); renderList(topic === 'All' ? allNews : allNews.filter(n => n.topic === topic)); }
+    function refreshTaja() { setActiveTab('tajaTab'); loadNews(); }
+    function setActiveTab(id) { 
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active')); 
+        document.getElementById(id).classList.add('active'); 
+    }
+    function toggleDarkMode() { 
+        document.body.classList.toggle('dark-mode'); 
+        const icon = document.getElementById('darkModeIcon');
+        icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun fa-lg' : 'fas fa-moon fa-lg';
+    }
+    function formatNepaliDate(d) { return new Date(d).toLocaleDateString('ne-NP'); }
+    
+    function toggleSaveCurrent() {
+        let saved = JSON.parse(localStorage.getItem('savedNews') || '[]');
+        const index = saved.findIndex(n => n.link === currentOpenItem.link);
+        const btn = document.getElementById('mainSaveBtn');
+        if (index > -1) { saved.splice(index, 1); btn.classList.remove('saved'); btn.querySelector('i').className = 'far fa-bookmark'; }
+        else { saved.push(currentOpenItem); btn.classList.add('saved'); btn.querySelector('i').className = 'fas fa-bookmark'; }
+        localStorage.setItem('savedNews', JSON.stringify(saved));
+    }
+
+    function renderSaved() { setActiveTab('saveTab'); toggleView('news'); const saved = JSON.parse(localStorage.getItem('savedNews') || '[]'); renderList(saved); }
+  </script>
+</body>
+</html>
