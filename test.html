@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Ayush | Professional Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .course-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .course-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/5 px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-extrabold tracking-tighter">LEARN WITH <span class="gradient-text">AYUSH</span></h1>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+            <a href="#" class="hover:text-white transition">All Courses</a>
+            <a href="#" class="hover:text-white transition">My Learning</a>
+            <a href="mailto:contact@ayushacharya5.com.np" class="hover:text-white transition">Support</a>
+        </div>
+    </nav>
+
+    <header class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <span class="text-sky-400 text-xs font-bold uppercase tracking-[0.2em]">Master Your Craft</span>
+        <h2 class="text-4xl md:text-6xl font-extrabold mt-4 mb-6">Level up your skills with <br>expert-led courses.</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto text-lg">High-quality development and design education tailored for the modern Nepali market.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="course-card p-6 rounded-[32px] flex flex-col justify-between">
+            <div>
+                <span class="bg-green-500/10 text-green-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Free</span>
+                <h3 class="text-xl font-bold mt-4">UI/UX Design Basics</h3>
+                <p class="text-slate-400 text-sm mt-2">Learn the fundamentals of Figma and modern design principles.</p>
+            </div>
+            <button onclick="alert('Accessing Free Content...')" class="w-full mt-8 bg-white text-slate-900 font-bold py-3 rounded-2xl hover:bg-slate-200 transition">Start Learning</button>
+        </div>
+
+        <div class="course-card p-6 rounded-[32px] border-sky-500/20 flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-start">
+                    <span class="bg-sky-500/10 text-sky-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Premium</span>
+                    <span class="font-bold text-sky-400">Rs. 2,500</span>
+                </div>
+                <h3 class="text-xl font-bold mt-4">Full-Stack Web Dev</h3>
+                <p class="text-slate-400 text-sm mt-2">Master HTML, CSS, JS, and PHP to build real-world applications.</p>
+            </div>
+            <a href="mailto:contact@ayushacharya5.com.np?subject=Enrollment%20Request:%20Full-Stack%20Web%20Dev&body=Hi%20Ayush,%20I%20want%20to%20enroll%20in%20the%20Full-Stack%20Web%20Dev%20course.%20Price:%20Rs.2500.%20Please%20send%20payment%20details." 
+               class="w-full mt-8 bg-sky-500 text-white text-center font-bold py-3 rounded-2xl hover:bg-sky-400 transition shadow-lg shadow-sky-500/20">Buy Course</a>
+        </div>
+
+        <div class="course-card p-6 rounded-[32px] flex flex-col justify-between">
+            <div>
+                <div class="flex justify-between items-start">
+                    <span class="bg-purple-500/10 text-purple-400 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Pro</span>
+                    <span class="font-bold text-purple-400">Rs. 4,000</span>
+                </div>
+                <h3 class="text-xl font-bold mt-4">Android with Kotlin</h3>
+                <p class="text-slate-400 text-sm mt-2">Build high-performance native apps using Jetpack Compose.</p>
+            </div>
+            <a href="mailto:contact@ayushacharya5.com.np?subject=Enrollment%20Request:%20Android%20Kotlin&body=Hi%20Ayush,%20I%20want%20to%20enroll%20in%20the%20Android%20with%20Kotlin%20course.%20Price:%20Rs.4000.%20Please%20send%20payment%20details." 
+               class="w-full mt-8 bg-purple-500 text-white text-center font-bold py-3 rounded-2xl hover:bg-purple-400 transition shadow-lg shadow-purple-500/20">Buy Course</a>
+        </div>
+
+    </main>
+
+    <section class="max-w-2xl mx-auto mt-20 px-6">
+        <div class="glass-card bg-white/5 border border-white/10 p-8 rounded-[40px] text-center">
+            <h3 class="text-xl font-bold mb-2">Already have an access code?</h3>
+            <p class="text-slate-400 text-sm mb-6">Enter the code sent to your email to unlock your course.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input id="accessCode" type="text" placeholder="e.g. 2026" class="flex-1 bg-slate-800 border border-white/10 rounded-2xl px-6 py-3 focus:outline-none focus:border-sky-500 transition">
+                <button onclick="checkCode()" class="bg-white text-slate-900 font-black px-8 py-3 rounded-2xl hover:bg-slate-200 transition">Unlock</button>
+            </div>
+            <p id="message" class="mt-4 text-sm font-bold"></p>
+        </div>
+    </section>
+
+    <script>
+        function checkCode() {
+            const code = document.getElementById('accessCode').value;
+            const message = document.getElementById('message');
+            
+            // Logic for codes like 0506 or numbers between 2002-3000
+            const numCode = parseInt(code);
+            
+            if (code === "0506" || (numCode >= 2002 && numCode <= 3000)) {
+                message.style.color = "#4ade80";
+                message.innerText = "Access Granted! Redirecting to Course Dashboard...";
+                // setTimeout(() => { window.location.href = "dashboard.html"; }, 2000);
+            } else {
+                message.style.color = "#f87171";
+                message.innerText = "Invalid Code. Please check your email or contact Ayush.";
+            }
+        }
+    </script>
+
+</body>
+</html>
