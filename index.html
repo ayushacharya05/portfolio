@@ -26,7 +26,7 @@
       --radius: 4px;
       --radius-lg: 12px;
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'DM Sans', sans-serif;
       font-size: 16px;
@@ -34,7 +34,9 @@
       color: var(--ink);
       background-color: var(--paper);
       cursor: default;
+      overflow-x: hidden;
     }
+
     /* ── CURSOR ── */
     .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease; }
     .cursor-ring { width: 34px; height: 34px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: transform 0.18s ease; }
@@ -48,7 +50,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(245, 242, 237, 0.88);
+      background: rgba(240, 247, 255, 0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -56,10 +58,10 @@
     .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15em; color: var(--ink); }
     .logo span { color: var(--accent); }
     nav ul { display: flex; gap: 36px; list-style: none; }
-    nav a { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-soft); text-decoration: none; position: relative; }
-    nav a:hover { color: var(--ink); }
+    nav a { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-soft); text-decoration: none; position: relative; transition: color 0.2s; }
+    nav a:hover { color: var(--accent); }
     .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-    .menu-toggle span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px; }
+    .menu-toggle span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: 0.3s; }
 
     /* ── HERO ── */
     #home { min-height: 100vh; display: flex; align-items: center; padding: 120px 50px 80px; position: relative; overflow: hidden; }
@@ -70,7 +72,7 @@
     h1 { font-family: 'Syne', sans-serif; font-size: clamp(3em, 6vw, 5.5em); font-weight: 800; line-height: 1.0; letter-spacing: -2px; color: var(--ink); margin-bottom: 24px; }
     h1 .line-highlight { color: var(--accent); display: block; }
     .hero-desc { font-size: 1.05em; color: var(--ink-soft); max-width: 500px; margin-bottom: 40px; font-weight: 300; }
-    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--white); padding: 14px 28px; border-radius: var(--radius); font-family: 'Syne', sans-serif; font-weight: 700; text-decoration: none; transition: 0.2s; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--white); padding: 14px 28px; border-radius: var(--radius); font-family: 'Syne', sans-serif; font-weight: 700; text-decoration: none; transition: 0.3s; }
     .hero-cta:hover { background: var(--accent); transform: translateY(-2px); }
 
     .hero-image-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
@@ -80,10 +82,9 @@
     .hero-image-frame img { width: 100%; height: 100%; object-fit: cover; }
     .hero-stats { margin-top: 56px; display: flex; gap: 40px; }
     .stat-num { font-family: 'Syne', sans-serif; font-size: 2.4em; font-weight: 800; color: var(--ink); }
-    .stat-num span { color: var(--accent); }
 
     /* ── MARQUEE ── */
-    .marquee-strip { background: #0f2a4a; padding: 14px 0; overflow: hidden; display: flex; }
+    .marquee-strip { background: var(--ink); padding: 14px 0; overflow: hidden; display: flex; }
     .marquee-track { display: flex; animation: marquee 20s linear infinite; white-space: nowrap; }
     .marquee-item { font-family: 'Syne', sans-serif; font-size: 0.82em; color: var(--paper); padding: 0 32px; text-transform: uppercase; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -97,13 +98,13 @@
 
     /* ── SERVICES ── */
     .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-    .service-card { background: var(--white); padding: 32px 28px; transition: 0.25s; position: relative; }
+    .service-card { background: var(--white); padding: 32px 28px; transition: 0.3s; position: relative; }
     .service-card:hover { background: var(--ink); color: var(--white); transform: scale(1.03); z-index: 2; border-radius: var(--radius-lg); }
+    .service-num { font-family: 'Syne', sans-serif; font-size: 0.7em; color: var(--accent); font-weight: 700; margin-bottom: 20px; display: block; }
     .service-icon-wrap { width: 44px; height: 44px; background: var(--paper-warm); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
     .service-card:hover .service-icon-wrap { background: rgba(255,255,255,0.1); }
-    .service-num { font-family: 'Syne', sans-serif; font-size: 0.7em; color: var(--accent); font-weight: 700; margin-bottom: 20px; display: block; }
 
-    /* ── CONTACT (RESTORED) ── */
+    /* ── CONTACT ── */
     #contact { background: #0f2a4a; color: var(--white); padding: 100px 50px; }
     .contact-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .contact-left .section-label { color: var(--accent-2); }
@@ -111,19 +112,20 @@
     #contact h2 { color: var(--white); text-align: left; }
     .contact-tagline { font-size: 1em; color: rgba(255,255,255,0.5); margin-top: 12px; font-weight: 300; }
     .contact-right { display: flex; flex-direction: column; gap: 24px; }
-    .contact-item { display: flex; align-items: center; gap: 18px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); transition: 0.2s; }
-    .contact-item:hover { border-color: var(--accent); background: rgba(232,71,10,0.06); }
+    .contact-item { display: flex; align-items: center; gap: 18px; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); transition: 0.3s; width: 100%; }
+    .contact-item:hover { border-color: var(--accent); background: rgba(33,150,243,0.05); }
     .contact-item-icon { width: 42px; height: 42px; background: rgba(33,150,243,0.15); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .contact-item-icon i { color: var(--accent); }
+    .contact-item-info { display: flex; flex-direction: column; }
     .contact-item-label { font-size: 0.72em; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.4); font-family: 'Syne', sans-serif; font-weight: 600; margin-bottom: 2px; }
-    .contact-item a { color: var(--white); text-decoration: none; font-size: 0.95em; }
-    .cta-big { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--white); padding: 18px 36px; border-radius: var(--radius); font-family: 'Syne', sans-serif; font-weight: 700; text-decoration: none; margin-top: 30px; align-self: flex-start; transition: 0.2s; }
+    .contact-item a, .contact-item span { color: var(--white); text-decoration: none; font-size: 0.95em; }
+    .cta-big { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--white); padding: 18px 36px; border-radius: var(--radius); font-family: 'Syne', sans-serif; font-weight: 700; text-decoration: none; margin-top: 30px; align-self: flex-start; transition: 0.3s; }
 
     /* ── FOOTER ── */
     footer { background: #071a2e; color: rgba(255,255,255,0.35); padding: 30px 50px; }
     .footer-bottom-bar { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
 
-    /* ── MOBILE FIXES ── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .cursor, .cursor-ring { display: none; }
       header { padding: 18px 24px; }
@@ -135,18 +137,24 @@
       h1 { font-size: 3rem; }
       
       .menu-toggle { display: flex; }
-      nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--paper); padding: 20px; border-bottom: 1px solid var(--border); }
-      nav.active { display: flex; }
+      nav { display: none; width: 100%; position: absolute; top: 100%; left: 0; background: var(--paper); padding: 20px; border-bottom: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+      nav.active { display: block; }
       nav ul { flex-direction: column; gap: 15px; }
 
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .contact-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      
+      #contact { padding: 80px 24px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+      #contact h2 { text-align: center; }
       .contact-right { align-items: center; }
+      .contact-item { text-align: left; }
       .cta-big { align-self: center; }
     }
+
     @media (max-width: 560px) {
       .services-grid { grid-template-columns: 1fr; }
-      .footer-bottom-bar { flex-direction: column; gap: 10px; }
+      .footer-bottom-bar { flex-direction: column; gap: 15px; text-align: center; }
+      h1 { font-size: 2.5rem; }
     }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease-out; }
@@ -177,13 +185,12 @@
     <div class="hero-blob"></div>
     <div class="hero-inner">
       <div class="hero-text">
-       
         <h1>Ayush <span class="line-highlight">Acharya</span></h1>
         <p class="hero-desc">Developer, designer & digital strategist — building fast, clean, and highly performant digital solutions that actually work.</p>
         <a href="#contact" class="hero-cta"><i class="fas fa-arrow-right"></i> Let's Work Together</a>
         <div class="hero-stats">
           <div class="stat"><div class="stat-num">8<span>+</span></div><div class="stat-label">Services</div></div>
-          <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Dedication</div></div>
+          <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Success</div></div>
         </div>
       </div>
       <div class="hero-image-wrap">
@@ -199,19 +206,27 @@
     </div>
   </div>
 
+  <section id="about">
+    <div class="section-inner reveal">
+      <div class="section-label">About Me</div>
+      <h2>Crafting digital experiences with purpose.</h2>
+      <p style="color: var(--ink-soft); font-size: 1.1em; max-width: 800px;">Welcome to my digital space! As a passionate developer and freelancer, I’m committed to amplifying positivity through creative video production, graphics designing, compelling blogs, and dynamic website development. My fusion of tech expertise and musical passion fuels an innovative approach to team collaboration, fostering a positive environment. Join me on this transformative journey where positivity, music, and innovation converge to create impactful experiences.</p>
+    </div>
+  </section>
+
   <section id="services">
     <div class="section-inner">
       <div class="section-label">What I Do</div>
       <h2>My Services</h2>
       <div class="services-grid">
-        <div class="service-card reveal"><span class="service-num">01</span><div class="service-icon-wrap"><i class="fas fa-laptop-code"></i></div><h3>Website Development</h3><p>Responsive, high-speed, SEO-friendly websites using modern frameworks.</p></div>
-        <div class="service-card reveal"><span class="service-num">02</span><div class="service-icon-wrap"><i class="fas fa-chart-line"></i></div><h3>Digital Marketing</h3><p>Strategies to boost online visibility, traffic, and conversions.</p></div>
-        <div class="service-card reveal"><span class="service-num">03</span><div class="service-icon-wrap"><i class="fas fa-palette"></i></div><h3>Graphics Designing</h3><p>Logos, social media graphics, and marketing materials.</p></div>
-        <div class="service-card reveal"><span class="service-num">04</span><div class="service-icon-wrap"><i class="fas fa-server"></i></div><h3>Web Hosting</h3><p>Reliable, secure hosting solutions with continuous optimization.</p></div>
+        <div class="service-card reveal"><span class="service-num">01</span><div class="service-icon-wrap"><i class="fas fa-laptop-code"></i></div><h3>Website Development</h3><p>Responsive, high-speed, SEO-friendly websites.</p></div>
+        <div class="service-card reveal"><span class="service-num">02</span><div class="service-icon-wrap"><i class="fas fa-chart-line"></i></div><h3>Digital Marketing</h3><p>Strategies to boost online visibility and traffic.</p></div>
+        <div class="service-card reveal"><span class="service-num">03</span><div class="service-icon-wrap"><i class="fas fa-palette"></i></div><h3>Graphics Designing</h3><p>Logos, social media, and marketing materials.</p></div>
+        <div class="service-card reveal"><span class="service-num">04</span><div class="service-icon-wrap"><i class="fas fa-server"></i></div><h3>Web Hosting</h3><p>Reliable, secure hosting and maintenance.</p></div>
         <div class="service-card reveal"><span class="service-num">05</span><div class="service-icon-wrap"><i class="fas fa-bullhorn"></i></div><h3>Digital Advertising</h3><p>Targeted PPC and social media ad campaigns.</p></div>
-        <div class="service-card reveal"><span class="service-num">06</span><div class="service-icon-wrap"><i class="fas fa-video"></i></div><h3>Video Production</h3><p>Engaging video content for corporate and social media.</p></div>
-        <div class="service-card reveal"><span class="service-num">07</span><div class="service-icon-wrap"><i class="fas fa-globe"></i></div><h3>Domain Management</h3><p>Securing domains and managing renewals and DNS.</p></div>
-        <div class="service-card reveal"><span class="service-num">08</span><div class="service-icon-wrap"><i class="fas fa-drafting-compass"></i></div><h3>UI/UX & Branding</h3><p>Intuitive interfaces and polished brand identities.</p></div>
+        <div class="service-card reveal"><span class="service-num">06</span><div class="service-icon-wrap"><i class="fas fa-video"></i></div><h3>Video Production</h3><p>Engaging video content for marketing.</p></div>
+        <div class="service-card reveal"><span class="service-num">07</span><div class="service-icon-wrap"><i class="fas fa-globe"></i></div><h3>Domain Management</h3><p>DNS and domain renewal management.</p></div>
+        <div class="service-card reveal"><span class="service-num">08</span><div class="service-icon-wrap"><i class="fas fa-drafting-compass"></i></div><h3>UI/UX & Branding</h3><p>Intuitive interfaces and polished identities.</p></div>
       </div>
     </div>
   </section>
@@ -227,15 +242,24 @@
       <div class="contact-right reveal">
         <div class="contact-item">
           <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-          <div><div class="contact-item-label">Email</div><a href="mailto:contact@ayushacharya5.com.np">contact@ayushacharya5.com.np</a></div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Email</div>
+            <a href="mailto:contact@ayushacharya5.com.np">contact@ayushacharya5.com.np</a>
+          </div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div><div class="contact-item-label">Location</div><span>Biratnagar, Nepal</span></div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Location</div>
+            <span>Biratnagar, Nepal</span>
+          </div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
-          <div><div class="contact-item-label">Response Time</div><span>Within 24 hours</span></div>
+          <div class="contact-item-info">
+            <div class="contact-item-label">Response Time</div>
+            <span>Within 24 hours</span>
+          </div>
         </div>
       </div>
     </div>
@@ -249,6 +273,13 @@
   </footer>
 
   <script>
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
+    function animateRing() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; cursorRing.style.left = ringX + 'px'; cursorRing.style.top = ringY + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
     menuToggle.addEventListener('click', () => mainNav.classList.toggle('active'));
