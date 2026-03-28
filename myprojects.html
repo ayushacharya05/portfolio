@@ -1,4 +1,4 @@
-c<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,241 +6,287 @@ c<!DOCTYPE html>
   <title>Projects | Ayush Acharya</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  
   <style>
-    /* ── CORE STYLES (Identical to your Portfolio) ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --ink: #0f2a4a;
-      --ink-soft: #2e4d6b;
-      --paper: #f0f7ff;
+      --ink-soft: #5c7a99;
+      --paper: #f8fbff;
       --accent: #2196f3;
       --white: #ffffff;
-      --border: #c5dff0;
-      --radius: 4px;
-      --radius-lg: 12px;
-    }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--paper);
-      color: var(--ink);
-      overflow-x: hidden;
+      --border: rgba(33, 150, 243, 0.1);
+      --radius: 24px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ── CURSOR (Identical) ── */
-    .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
-    .cursor-ring { width: 34px; height: 34px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body { 
+      font-family: 'DM Sans', sans-serif; 
+      background-color: var(--paper); 
+      color: var(--ink); 
+      line-height: 1.6;
+    }
 
-    /* ── HEADER (Identical) ── */
+    /* ── HEADER ── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 22px 50px;
+      padding: 1.2rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(240, 247, 255, 0.88);
+      background: rgba(248, 251, 255, 0.8);
       backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
       border-bottom: 1px solid var(--border);
     }
-    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15em; color: var(--ink); text-decoration: none; }
-    .logo span { color: var(--accent); }
-    nav ul { display: flex; gap: 36px; list-style: none; }
-    nav a { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.82em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ink-soft); text-decoration: none; transition: 0.2s; }
-    nav a:hover { color: var(--accent); }
 
-    /* ── PROJECTS HERO ── */
-    .project-hero {
-      padding: 160px 50px 60px;
-      text-align: center;
-      position: relative;
+    .logo { 
+      font-family: 'Syne', sans-serif; 
+      font-weight: 800; 
+      text-decoration: none; 
+      color: var(--ink); 
+      font-size: 1.3rem; 
     }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.3; z-index: -1; }
-    
-    .section-label { display: inline-flex; align-items: center; gap: 8px; font-family: 'Syne', sans-serif; font-size: 0.75em; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-    .section-label::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
-    
-    h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.5em, 5vw, 4.5em); font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; }
+    .logo span { color: var(--accent); }
 
-    /* ── PROJECT GRID (Bento Style in Portfolio Theme) ── */
-    .project-container { max-width: 1100px; margin: 0 auto; padding: 40px 50px 100px; }
+    /* ── HERO ── */
+    .hero { padding: 80px 5% 40px; text-align: center; }
+    .hero h1 { 
+      font-family: 'Syne', sans-serif; 
+      font-size: clamp(2.5rem, 6vw, 3.5rem); 
+      margin-bottom: 10px; 
+      letter-spacing: -1.5px; 
+    }
+    .hero p { color: var(--ink-soft); max-width: 500px; margin: 0 auto 40px; }
+
+    /* ── FILTERS ── */
+    .filter-container { 
+      display: flex; 
+      justify-content: center; 
+      gap: 10px; 
+      margin-bottom: 50px; 
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      transition: var(--transition);
+    }
+    .filter-btn.active { 
+      background: var(--accent); 
+      color: white; 
+      border-color: var(--accent);
+      box-shadow: 0 10px 20px rgba(33, 150, 243, 0.2);
+    }
+    .filter-btn:hover:not(.active) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── UNIFORM GRID ── */
+    .grid-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 5% 100px; }
     
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr); /* 3 Equal Columns */
+      gap: 24px;
     }
 
     .project-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 30px;
+      border-radius: var(--radius);
+      padding: 32px;
       text-decoration: none;
       color: inherit;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      flex-direction: column; /* Allows content to stack */
+      height: 100%; /* All cards same height */
+      transition: var(--transition);
+      animation: fadeIn 0.6s ease forwards;
     }
 
     .project-card:hover {
-      transform: translateY(-10px);
-      background: var(--ink);
-      color: var(--white);
-      border-color: var(--ink);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(15, 42, 74, 0.06);
+      border-color: var(--accent);
     }
 
-    /* Grid Sizing */
-    .large { grid-column: span 3; grid-row: span 2; }
-    .medium { grid-column: span 3; }
-    .small { grid-column: span 2; }
-
-    .card-icon { font-size: 2em; color: var(--accent); margin-bottom: 20px; transition: 0.3s; }
-    .project-card:hover .card-icon { color: var(--white); transform: scale(1.1); }
-
-    .project-card h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4em; margin-bottom: 12px; }
-    .project-card p { font-size: 0.95em; color: var(--ink-soft); line-height: 1.5; }
-    .project-card:hover p { color: rgba(255,255,255,0.7); }
-
-    .tag { font-family: 'Syne', sans-serif; font-size: 0.65em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; display: block; }
-    .project-card:hover .tag { color: var(--white); opacity: 0.8; }
-
-    .arrow-link { margin-top: auto; padding-top: 20px; font-weight: 700; font-size: 0.85em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; }
-    .project-card:hover .arrow-link { color: var(--white); }
-
-    /* ── FOOTER ── */
-    footer { background: #071a2e; color: rgba(255,255,255,0.35); padding: 40px 50px; text-align: center; }
+    .card-icon { 
+      font-size: 1.4rem; 
+      color: var(--accent); 
+      margin-bottom: 20px; 
+      width: 52px; height: 52px; 
+      background: rgba(33, 150, 243, 0.05);
+      display: flex; align-items: center; justify-content: center; 
+      border-radius: 16px;
+    }
     
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .project-grid { grid-template-columns: 1fr; }
-      .large, .medium, .small { grid-column: span 1; }
-      .project-hero { padding: 120px 24px 40px; }
-      .project-container { padding: 20px 24px 80px; }
-      .cursor, .cursor-ring { display: none; }
+    .tag { 
+      font-size: 0.65rem; 
+      font-weight: 800; 
+      color: var(--accent); 
+      text-transform: uppercase; 
+      margin-bottom: 10px; 
+      letter-spacing: 1.2px; 
     }
 
-    /* Animations */
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease-out; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .project-card h3 { 
+      font-family: 'Syne', sans-serif; 
+      font-size: 1.25rem; 
+      margin-bottom: 12px; 
+    }
+
+    .project-card p { 
+      color: var(--ink-soft); 
+      font-size: 0.95rem; 
+      margin-bottom: 25px; 
+      flex-grow: 1; /* Pushes the link to the bottom */
+    }
+
+    .btn-link { 
+      font-size: 0.8rem; 
+      font-weight: 700; 
+      color: var(--accent); 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATIONS & LOGIC ── */
+    .hidden { display: none; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 650px) {
+      .project-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
-
   <header>
-    <a href="index.html" class="logo">Ayush<span>.</span></a>
-    <nav>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://blog.ayushacharya5.com.np">Blog</a></li>
-      </ul>
-    </nav>
+    <a href="#" class="logo">Ayush<span>.</span></a>
+
   </header>
 
   <main>
-    <section class="project-hero">
-      <div class="hero-grid-bg"></div>
-      <div class="section-label reveal">Digital Products</div>
-      <h1 class="reveal">My <span style="color:var(--accent)">Ecosystem</span></h1>
-      <p class="reveal" style="max-width: 600px; margin: 0 auto; color: var(--ink-soft);">A collection of specialized AI platforms, news engines, and creative tools designed for efficiency.</p>
+    <section class="hero">
+      <h1>Project <span style="color:var(--accent)">Vault</span></h1>
+      <p>A systematic collection of my technical builds and creative experiments.</p>
+      
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="AI">AI Tools</button>
+        <button class="filter-btn" data-filter="Utility">Utilities</button>
+        <button class="filter-btn" data-filter="Media">Media</button>
+      </div>
     </section>
 
-    <div class="project-container">
-      <div class="project-grid">
+    <div class="grid-wrapper">
+      <div class="project-grid" id="projectGrid">
         
-        <a href="https://mitra.ayushacharya5.com.np" target="_blank" class="project-card large reveal">
-          <span class="tag">Next-Gen AI</span>
+        <a href="https://mitra.ayushacharya5.com.np" target="_blank" class="project-card" data-category="AI">
+          <span class="tag">AI System</span>
           <div class="card-icon"><i class="fas fa-robot"></i></div>
           <h3>Mitra AI</h3>
-          <p>An intelligent conversational interface built to provide context-aware solutions and real-time interaction using advanced NLP models.</p>
-          <div class="arrow-link">Launch AI <i class="fas fa-external-link-alt"></i></div>
+          <p>A context-aware conversational engine designed for intelligent automation and real-time processing.</p>
+          <div class="btn-link">Launch App <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <a href="https://clearbg.ayushacharya5.com.np" target="_blank" class="project-card large reveal">
+        <a href="https://clearbg.ayushacharya5.com.np" target="_blank" class="project-card" data-category="AI">
           <span class="tag">Computer Vision</span>
           <div class="card-icon"><i class="fas fa-magic"></i></div>
           <h3>ClearBG.ai</h3>
-          <p>Remove backgrounds from any image with surgical precision. Powered by high-speed neural networks for professional designers.</p>
-          <div class="arrow-link">Open App <i class="fas fa-external-link-alt"></i></div>
+          <p>High-precision background removal tool powered by neural networks.</p>
+          <div class="btn-link">Remove BG <i class="fas fa-external-link-alt"></i></div>
         </a>
 
-        <a href="https://learn.ayushacharya5.com.np" target="_blank" class="project-card medium reveal">
-          <span class="tag">Education Hub</span>
-          <div class="card-icon"><i class="bi bi-mortarboard-fill"></i><i class="fas fa-graduation-cap"></i></div>
-          <h3>Learn with Ayush</h3>
-          <p>Access premium video courses on Web Development and Graphic Design, tailored for the Nepali tech community.</p>
-        </a>
-
-        <a href="https://aajakosamachar.ayushacharya5.com.np" target="_blank" class="project-card small reveal">
-          <span class="tag">News Feed</span>
+        <a href="https://aajakosamachar.ayushacharya5.com.np" target="_blank" class="project-card" data-category="Media">
+          <span class="tag">News</span>
           <div class="card-icon"><i class="fas fa-newspaper"></i></div>
           <h3>Aajako Samachar</h3>
-          <p>Real-time aggregator pulling news from 10+ major Nepali outlets.</p>
+          <p>Aggregating news from 10+ major Nepali sources in real-time for quick updates.</p>
+          <div class="btn-link">Read <i class="fas fa-link"></i></div>
         </a>
 
-        <a href="https://noteit.ayushacharya5.com.np" target="_blank" class="project-card small reveal">
+        <a href="https://learn.ayushacharya5.com.np" target="_blank" class="project-card" data-category="Media">
+          <span class="tag">Education</span>
+          <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Learn with Ayush</h3>
+          <p>Localized IT courses and video lessons tailored for the Nepali community.</p>
+          <div class="btn-link">Learn <i class="fas fa-play"></i></div>
+        </a>
+
+        <a href="https://noteit.ayushacharya5.com.np" target="_blank" class="project-card" data-category="Utility">
           <span class="tag">Productivity</span>
           <div class="card-icon"><i class="fas fa-sticky-note"></i></div>
           <h3>Note It</h3>
-          <p>Distraction-free digital workspace for capturing ideas instantly.</p>
+          <p>A fast, distraction-free markdown workspace for capturing quick thoughts.</p>
+          <div class="btn-link">Open <i class="fas fa-edit"></i></div>
         </a>
 
-        <a href="https://passportpro.ayushacharya5.com.np" target="_blank" class="project-card small reveal">
+        <a href="https://passportpro.ayushacharya5.com.np" target="_blank" class="project-card" data-category="Utility">
           <span class="tag">Utility</span>
           <div class="card-icon"><i class="fas fa-id-card"></i></div>
           <h3>Passport Pro</h3>
-          <p>Automate photo resizing for official document standards.</p>
-        </a>
-
-        <a href="https://thumbnailpro.ayushacharya5.com.np" target="_blank" class="project-card small reveal">
-          <span class="tag">Design Tool</span>
-          <div class="card-icon"><i class="fab fa-youtube"></i></div>
-          <h3>Thumbnail Pro</h3>
-          <p>Generate high-CTR YouTube thumbnails for creators.</p>
-        </a>
-
-        <a href="https://thought.ayushacharya5.com.np" target="_blank" class="project-card small reveal">
-          <span class="tag">Microblog</span>
-          <div class="card-icon"><i class="fas fa-feather-alt"></i></div>
-          <h3>Thought Blog</h3>
-          <p>Personal reflections on technology, design, and coding life.</p>
+          <p>Smart-cropping and resizing for official government document photos.</p>
+          <div class="btn-link">Resize <i class="fas fa-crop"></i></div>
         </a>
 
       </div>
     </div>
   </main>
 
-  <footer>
-    <div class="logo">Ayush<span>.</span></div>
-    <p style="margin-top: 10px; font-size: 0.8em;">&copy; 2026 Ayush Acharya. Built in Biratnagar.</p>
+  <footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--ink-soft);">
+    &copy; 2026 Ayush Acharya. Built in Biratnagar.
   </footer>
 
   <script>
-    /* ── CURSOR SCRIPT (Same as Portfolio) ── */
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; });
-    function animateRing() { ringX += (mouseX - ringX) * 0.15; ringY += (mouseY - ringY) * 0.15; cursorRing.style.left = ringX + 'px'; cursorRing.style.top = ringY + 'px'; requestAnimationFrame(animateRing); }
-    animateRing();
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
 
-    /* ── REVEAL ANIMATION ── */
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle Active Class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        projects.forEach(card => {
+          const category = card.getAttribute('data-category');
+          
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+            card.style.animation = 'none'; // Reset animation
+            void card.offsetWidth; // Trigger reflow
+            card.style.animation = 'fadeIn 0.5s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
