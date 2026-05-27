@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayush Acharya | Developer Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --card-2: #111c35;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body::before {
+      background: rgba(99, 102, 241, 0.15);
+      filter: blur(140px);
+      top: -100px;
+      left: -100px;
+    }
+    body::after {
+      background: rgba(139, 92, 246, 0.12);
+      filter: blur(140px);
+      bottom: -200px;
+      right: -100px;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      width: min(1200px, 90%);
+      margin: auto;
+    }
+    section {
+      padding: 100px 0;
+    }
+    
+    /* ── NAVBAR ── */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(5, 8, 22, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover, .nav-links a.active-link {
+      color: white;
+    }
+    .nav-btn {
+      padding: 12px 24px;
+      background: var(--gradient);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 80px;
+    }
+    .hero-wrapper {
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 28px;
+      color: #dbeafe;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .availability span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero h1 .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 650px;
+      margin-bottom: 40px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .primary-btn, .secondary-btn {
+      padding: 16px 32px;
+      border-radius: 16px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .primary-btn {
+      background: var(--gradient);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.25);
+    }
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px rgba(99, 102, 241, 0.35);
+    }
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--gradient);
+      opacity: 0.15;
+      filter: blur(80px);
+      z-index: -1;
+    }
+    .profile-card {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(145deg, #0f172a, #111827);
+      box-shadow: var(--shadow);
+    }
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.4);
+      transform-origin: center 38%;
+      transition: var(--transition);
+    }
+    .profile-card:hover img {
+      transform: scale(1.48);
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title span {
+      color: #818cf8;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .section-title h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      margin-top: 12px;
+      letter-spacing: -1px;
+    }
+    .section-title p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 16px auto 0;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: var(--transition);
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 102, 241, 0.3);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .glass-card h3 {
+      font-family: 'Syne', sans-serif;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+    }
+    .glass-card p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── DYNAMIC PROJECT VAULT GRID ── */
+    .filter-container { 
+      display: flex; 
+      justify-content: center; 
+      gap: 12px; 
+      margin-bottom: 50px; 
+      flex-wrap: wrap; 
+    }
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: var(--transition);
+    }
+    .filter-btn.active { 
+      background: var(--gradient); 
+      color: white; 
+      border-color: transparent;
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+    }
+    .filter-btn:hover:not(.active) {
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: var(--primary);
+    }
+    .card-icon { 
+      font-size: 1.4rem; 
+      color: var(--primary); 
+      margin-bottom: 20px; 
+      width: 52px; height: 52px; 
+      background: rgba(99, 102, 241, 0.08);
+      display: flex; align-items: center; justify-content: center; 
+      border-radius: 16px;
+    }
+    .tag { 
+      font-size: 0.65rem; 
+      font-weight: 800; 
+      color: #818cf8; 
+      text-transform: uppercase; 
+      margin-bottom: 10px; 
+      letter-spacing: 1.2px; 
+    }
+    .project-card h3 { 
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem; 
+      margin-bottom: 12px; 
+      color: white;
+    }
+    .project-card p { 
+      color: var(--muted); 
+      font-size: 0.95rem; 
+      margin-bottom: 25px; 
+      flex-grow: 1;
+    }
+    .btn-link { 
+      font-size: 0.8rem; 
+      font-weight: 700; 
+      color: var(--primary); 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      text-transform: uppercase;
+      margin-top: auto;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      padding: 40px 35px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .service-card i {
+      font-size: 2.4rem;
+      margin-bottom: 22px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .service-card h3 {
+      font-family: 'Syne', sans-serif;
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: linear-gradient(145deg, #111827, #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .contact-box p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .socials {
+      display: flex;
+      gap: 14px;
+    }
+    .socials a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: var(--transition);
+    }
+    .socials a:hover {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE DESIGN ── */
+    @media(max-width:1024px) {
+      .hero-wrapper, .about-grid { display: grid; grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding: 140px 0 60px; }
+      .hero-image { order: -1; margin-bottom: 20px; }
+      .hero h1 { font-size: 3.5rem; }
+    }
+    
+    @media(max-width:768px) {
+      section { padding: 70px 0; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(5, 8, 22, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+        gap: 40px;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-top: 1px solid var(--border);
+      }
+      .nav-links.open { left: 0; }
+      .nav-links a { font-size: 1.2rem; }
+      .nav-right { gap: 20px; }
+      .hero h1 { font-size: 2.8rem; }
+      .section-title h2, .contact-box h2 { font-size: 2.2rem; }
+      .profile-card { width: 300px; height: 300px; }
+      .contact-box { padding: 50px 20px; }
+    }
+
+    @media (max-width: 650px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav aria-label="Main Navigation">
+        <div class="logo"><a href="#home">Ayush<span>.</span></a></div>
+        <div class="nav-right">
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-item">Home</a></li>
+            <li><a href="#about" class="nav-item">About</a></li>
+            <li><a href="#projects" class="nav-item">Projects</a></li>
+            <li><a href="#services" class="nav-item">Services</a></li>
+            <li><a href="#contact" class="nav-item">Contact</a></li>
+          </ul>
+          <a href="#contact" class="nav-btn">Hire Me</a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container hero-wrapper" style="display: grid;">
+      <div>
+        <div class="availability">
+          <span></span> Available for freelance projects
+        </div>
+        <h1>Building modern <span class="gradient-text">digital experiences</span> that stand out.</h1>
+        <p>I'm Ayush Acharya — a developer, designer, and digital strategist focused on creating fast, modern, and high-converting websites for startups, creators, and businesses.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="primary-btn"><i class="fas fa-rocket"></i> Project Vault</a>
+          <a href="#contact" class="secondary-btn"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="profile-card">
+          <img src="https://raw.githubusercontent.com/ayushacharya05/portfolio/refs/heads/main/images/profile.png" alt="Ayush Acharya Profile Portrait">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title reveal">
+        <span>About Me</span>
+        <h2>Creative developer with modern vision.</h2>
+        <p>I combine development, design, and branding to create digital experiences that not only look beautiful but also perform exceptionally.</p>
+      </div>
+      <div class="about-grid">
+        <div class="glass-card reveal">
+          <h3>Who I Am</h3>
+          <p>Passionate about technology, creativity, and innovation, I specialize in building premium websites, UI/UX systems, branding, and modern web experiences.</p>
+        </div>
+        <div class="glass-card reveal">
+          <h3>My Mission</h3>
+          <p>My goal is to help startups and businesses establish a strong digital presence through high-performance websites, strategic branding, and modern design systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title reveal">
+        <span>Project Vault</span>
+        <h2>Systematic Technical Builds</h2>
+        <p>A handpicked selection of my real-time production applications, engineering experiments, and utilities.</p>
+      </div>
+
+      <div class="filter-container reveal">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="AI">AI Tools</button>
+        <button class="filter-btn" data-filter="Utility">Utilities</button>
+        <button class="filter-btn" data-filter="Media">Media</button>
+      </div>
+
+      <div class="project-grid" id="projectGrid">
+        <!-- Card 1 -->
+        <a href="http://thumbnailpro.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
+          <span class="tag">Youtube thumbnail downloader</span>
+          <div class="card-icon"><i class="fas fa-image"></i></div>
+          <h3>Thumbnail Pro</h3>
+          <p>A youtube thumbnail downloader with easy interface.</p>
+          <div class="btn-link">Launch App <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="https://clearbg.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="AI">
+          <span class="tag">Computer Vision</span>
+          <div class="card-icon"><i class="fas fa-magic"></i></div>
+          <h3>ClearBG.ai</h3>
+          <p>High-precision background removal tool powered by neural networks.</p>
+          <div class="btn-link">Remove BG <i class="fas fa-external-link-alt"></i></div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="https://aajakosamachar.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
+          <span class="tag">News</span>
+          <div class="card-icon"><i class="fas fa-newspaper"></i></div>
+          <h3>Aajako Samachar</h3>
+          <p>Aggregating news from 10+ major Nepali sources in real-time for quick updates.</p>
+          <div class="btn-link">Read <i class="fas fa-link"></i></div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="https://learn.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
+          <span class="tag">Education</span>
+          <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Learn with Ayush</h3>
+          <p>Localized IT courses and video lessons tailored for the Nepali community.</p>
+          <div class="btn-link">Learn <i class="fas fa-play"></i></div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="https://noteit.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
+          <span class="tag">Productivity</span>
+          <div class="card-icon"><i class="fas fa-sticky-note"></i></div>
+          <h3>Note It</h3>
+          <p>A fast, distraction-free markdown workspace for capturing quick thoughts.</p>
+          <div class="btn-link">Open <i class="fas fa-edit"></i></div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="https://passportpro.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
+          <span class="tag">Utility</span>
+          <div class="card-icon"><i class="fas fa-id-card"></i></div>
+          <h3>Passport Pro</h3>
+          <p>Smart-cropping and resizing for official government document photos.</p>
+          <div class="btn-link">Resize <i class="fas fa-crop"></i></div>
+        </a>
+
+        <!-- Card 7 -->
+        <a href="https://instacode.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
+          <span class="tag">Utility</span>
+          <div class="card-icon"><i class="fa fa-code"></i></div>
+          <h3>Insta CodE</h3>
+          <p>IDE designed for rapid web prototyping to eliminate the friction of traditional local setups.</p>
+          <div class="btn-link">Code it <i class="fas fa-code"></i></div>
+        </a>
+
+        <!-- Card 8 -->
+        <a href="https://fluxpdf.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
+          <span class="tag">Utility</span>
+          <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <h3>Flux Pdf</h3>
+          <p>Digital document toolkit designed for rapid file processing, merging, compressing, and converting.</p>
+          <div class="btn-link">Open <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <!-- Card 9 -->
+        <a href="https://pdftodoc.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
+          <span class="tag">Utility</span>
+          <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+          <h3>PDF to DOC</h3>
+          <p>Digital document toolkit designed for rapid file processing to allow users to convert PDF to DOC files.</p>
+          <div class="btn-link">Open <i class="fas fa-arrow-right"></i></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title reveal">
+        <span>Services Portfolio</span>
+        <h2>Full-Stack Capabilities & Solutions</h2>
+        <p>End-to-end digital engineering and design services customized to transform high-growth concepts into robust products.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <i class="fas fa-code"></i>
+          <h3>Web & App Engineering</h3>
+          <p>Building high-performance responsive web platforms and native Android applications using modern architectural patterns, clean APIs, and optimized databases.</p>
+        </div>
+        <div class="service-card reveal">
+          <i class="fas fa-bezier-curve"></i>
+          <h3>Creative UI/UX Design</h3>
+          <p>Structuring cohesive digital interfaces and interactive design systems. Focused on conversion design, structured components, and user-centered typography profiles.</p>
+        </div>
+        <div class="service-card reveal">
+          <i class="fas fa-video"></i>
+          <h3>Premium Video Production</h3>
+          <p>Crafting engaging dynamic video edits, graphic content blocks, and informational visual assets for strong brand messaging and commercial outreach layouts.</p>
+        </div>
+        <div class="service-card reveal">
+          <i class="fas fa-chart-line"></i>
+          <h3>Strategic Digital Growth</h3>
+          <p>Configuring data-backed optimization pipelines, target demographics indexing, structural technical SEO execution, and conversion asset layouts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <h2>Let's create something amazing.</h2>
+        <p>Looking for a modern website, strong digital presence, or creative collaboration? Let's build something impactful together.</p>
+        <div class="contact-buttons">
+          <a href="mailto:contact@ayushacharya5.com.np" class="primary-btn"><i class="fas fa-envelope"></i> contact@ayushacharya5.com.np</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <p>© 2026 Ayush Acharya — Crafted with passion in Nepal 🇳🇵</p>
+      <div class="socials">
+        <a href="#home" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        <a href="#home" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#home" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+        <a href="#home" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- MOBILE MENU ENGINE ---
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navItems = document.querySelectorAll('.nav-item');
+    const toggleIcon = menuToggle.querySelector('i');
+
+    function toggleMenu() {
+      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.contains('open');
+      toggleIcon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if(navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
+
+    // --- LIVE CATEGORY FILTER ENGINE ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        projects.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          
+          if (filterValue === 'all' || cardCategory === filterValue) {
+            card.style.display = 'flex';
+            card.style.animation = 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // --- OPTIMIZED INTERSECTION OBSERVER ANIMATION ENGINE ---
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.05, rootMargin: "0px 0px -20px 0px" };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          if(entry.target.classList.contains('project-card')) {
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, revealOptions);
+
+    reveals.forEach(element => revealObserver.observe(element));
+
+    // --- SCROLL SPY MECHANISM ---
+    const sections = document.querySelectorAll('section');
+    const dynamicLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.pageYOffset >= sectionTop - 140) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      dynamicLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.getAttribute('href').includes(currentSectionId)) {
+          link.classList.add('active-link');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
