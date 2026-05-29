@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayush Acharya</title>
-
-   <link rel="icon" type="image/x-icon" href="images/profiles.png.png">
+  <link rel="icon" type="image/x-icon" href="images/profiles.png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <style>
     * {
       margin: 0;
@@ -44,8 +42,8 @@
     body::before, body::after {
       content: '';
       position: fixed;
-      width: 500px;
-      height: 500px;
+      width: min(500px, 90vw);
+      height: min(500px, 90vw);
       z-index: -1;
       pointer-events: none;
     }
@@ -66,13 +64,14 @@
       color: inherit;
     }
     .container {
-      width: min(1200px, 90%);
+      width: min(1200px, 92%);
       margin: auto;
+      padding: 0 30px;
     }
     section {
-      padding: 100px 0;
+      padding: clamp(60px, 8vw, 100px) 0;
     }
-    
+        
     /* ── NAVBAR ── */
     header {
       position: fixed;
@@ -126,11 +125,19 @@
       border-radius: 999px;
       font-weight: 600;
       font-size: 0.9rem;
+      color: #ffffff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
     }
     .nav-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+    .nav-btn.desktop-only {
+      display: inline-block;
+    }
+    .nav-btn.mobile-only {
+      display: none;
     }
     .menu-toggle {
       display: none;
@@ -140,6 +147,7 @@
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 1000;
+      padding: 5px;
     }
 
     /* ── HERO ── */
@@ -148,45 +156,28 @@
       display: flex;
       align-items: center;
       position: relative;
-      padding-top: 80px;
+      padding-top: 100px;
     }
     .hero-wrapper {
+      display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 60px;
+      gap: clamp(40px, 6vw, 80px);
       align-items: center;
+      width: 100%;
+      padding: 0 20px;
     }
-    .availability {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      margin-bottom: 28px;
-      color: #dbeafe;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .availability span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 12px #22c55e;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 20px; /* Layout safety padding from edge */
     }
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 28px;
     }
     .hero h1 .gradient-text {
       background: var(--gradient);
@@ -194,25 +185,27 @@
       -webkit-text-fill-color: transparent;
     }
     .hero p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
       color: var(--muted);
-      line-height: 1.8;
+      line-height: 1.7;
       max-width: 650px;
-      margin-bottom: 40px;
+      margin-bottom: 44px;
     }
     .hero-buttons {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       flex-wrap: wrap;
     }
     .primary-btn, .secondary-btn {
-      padding: 16px 32px;
+      padding: 14px 28px;
       border-radius: 16px;
       font-weight: 600;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
+      font-size: 0.95rem;
     }
     .primary-btn {
       background: var(--gradient);
@@ -234,6 +227,7 @@
       position: relative;
       display: flex;
       justify-content: center;
+      padding-right: 20px;
     }
     .hero-image::before {
       content: '';
@@ -247,8 +241,8 @@
       z-index: -1;
     }
     .profile-card {
-      width: 380px;
-      height: 380px;
+      width: clamp(260px, 32vw, 380px);
+      height: clamp(260px, 32vw, 380px);
       border-radius: 50%;
       overflow: hidden;
       position: relative;
@@ -271,7 +265,7 @@
     /* ── SECTION TITLE ── */
     .section-title {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: clamp(35px, 6vw, 50px);
     }
     .section-title span {
       color: #818cf8;
@@ -282,7 +276,7 @@
     }
     .section-title h2 {
       font-family: 'Syne', sans-serif;
-      font-size: 2.8rem;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       margin-top: 12px;
       letter-spacing: -1px;
     }
@@ -291,19 +285,20 @@
       max-width: 650px;
       margin: 16px auto 0;
       line-height: 1.8;
+      font-size: 0.95rem;
     }
 
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
     .glass-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 40px;
+      padding: clamp(24px, 4vw, 40px);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       transition: var(--transition);
@@ -315,24 +310,25 @@
     }
     .glass-card h3 {
       font-family: 'Syne', sans-serif;
-      margin-bottom: 18px;
-      font-size: 1.5rem;
+      margin-bottom: 14px;
+      font-size: 1.4rem;
     }
     .glass-card p {
       color: var(--muted);
-      line-height: 1.8;
+      line-height: 1.7;
+      font-size: 0.95rem;
     }
 
-    /* ── DYNAMIC PROJECT VAULT GRID ── */
+    /* ── PROJECTS ── */
     .filter-container { 
-      display: flex; 
-      justify-content: center; 
-      gap: 12px; 
-      margin-bottom: 50px; 
-      flex-wrap: wrap; 
-    }
+       display: flex; 
+       justify-content: center; 
+       gap: 10px; 
+       margin-bottom: 40px; 
+       flex-wrap: wrap; 
+     }
     .filter-btn {
-      padding: 10px 24px;
+      padding: 8px 20px;
       border-radius: 50px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.02);
@@ -343,10 +339,10 @@
       transition: var(--transition);
     }
     .filter-btn.active { 
-      background: var(--gradient); 
-      color: white; 
-      border-color: transparent;
-      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+       background: var(--gradient); 
+       color: white; 
+       border-color: transparent;
+       box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
     }
     .filter-btn:hover:not(.active) {
       border-color: var(--primary);
@@ -362,7 +358,7 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px;
+      padding: clamp(24px, 3vw, 32px);
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -374,53 +370,54 @@
       border-color: var(--primary);
     }
     .card-icon { 
-      font-size: 1.4rem; 
-      color: var(--primary); 
-      margin-bottom: 20px; 
-      width: 52px; height: 52px; 
-      background: rgba(99, 102, 241, 0.08);
-      display: flex; align-items: center; justify-content: center; 
-      border-radius: 16px;
+       font-size: 1.3rem; 
+       color: var(--primary); 
+       margin-bottom: 20px; 
+       width: 48px; height: 48px; 
+       background: rgba(99, 102, 241, 0.08);
+       display: flex; align-items: center; justify-content: center; 
+       border-radius: 14px;
     }
     .tag { 
-      font-size: 0.65rem; 
-      font-weight: 800; 
-      color: #818cf8; 
-      text-transform: uppercase; 
-      margin-bottom: 10px; 
-      letter-spacing: 1.2px; 
-    }
+       font-size: 0.65rem; 
+       font-weight: 800; 
+       color: #818cf8; 
+       text-transform: uppercase; 
+       margin-bottom: 10px; 
+       letter-spacing: 1.2px; 
+     }
     .project-card h3 { 
-      font-family: 'Syne', sans-serif;
-      font-size: 1.25rem; 
-      margin-bottom: 12px; 
-      color: white;
+       font-family: 'Syne', sans-serif;
+       font-size: 1.2rem; 
+       margin-bottom: 10px; 
+       color: white;
     }
     .project-card p { 
-      color: var(--muted); 
-      font-size: 0.95rem; 
-      margin-bottom: 25px; 
-      flex-grow: 1;
+       color: var(--muted); 
+       font-size: 0.95rem; 
+       margin-bottom: 25px; 
+       flex-grow: 1;
+       line-height: 1.6;
     }
     .btn-link { 
-      font-size: 0.8rem; 
-      font-weight: 700; 
-      color: var(--primary); 
-      display: flex; 
-      align-items: center; 
-      gap: 8px; 
-      text-transform: uppercase;
-      margin-top: auto;
+       font-size: 0.8rem; 
+       font-weight: 700; 
+       color: var(--primary); 
+       display: flex; 
+       align-items: center; 
+       gap: 8px; 
+       text-transform: uppercase;
+       margin-top: auto;
     }
 
     /* ── SERVICES ── */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
     .service-card {
-      padding: 40px 35px;
+      padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 35px);
       border-radius: 28px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
@@ -432,8 +429,8 @@
       background: rgba(255, 255, 255, 0.04);
     }
     .service-card i {
-      font-size: 2.4rem;
-      margin-bottom: 22px;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -441,12 +438,12 @@
     }
     .service-card h3 {
       font-family: 'Syne', sans-serif;
-      margin-bottom: 14px;
-      font-size: 1.3rem;
+      margin-bottom: 12px;
+      font-size: 1.25rem;
     }
     .service-card p {
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.6;
       font-size: 0.95rem;
     }
 
@@ -454,15 +451,15 @@
     .contact-box {
       background: linear-gradient(145deg, #111827, #0f172a);
       border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 80px 40px;
+      border-radius: clamp(24px, 4vw, 40px);
+      padding: clamp(50px, 6vw, 80px) 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     .contact-box h2 {
       font-family: 'Syne', sans-serif;
-      font-size: 3rem;
+      font-size: clamp(2rem, 4vw, 3rem);
       margin-bottom: 20px;
       letter-spacing: -1px;
     }
@@ -470,14 +467,19 @@
       color: var(--muted);
       max-width: 650px;
       margin: auto;
-      line-height: 1.8;
-      margin-bottom: 40px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+      font-size: 0.95rem;
     }
     .contact-buttons {
       display: flex;
       justify-content: center;
       gap: 18px;
       flex-wrap: wrap;
+    }
+    .contact-buttons .primary-btn {
+      width: auto;
+      max-width: 100%;
     }
 
     /* ── FOOTER ── */
@@ -489,7 +491,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
     }
     .footer-content p {
@@ -533,18 +535,40 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE DESIGN ── */
-    @media(max-width:1024px) {
-      .hero-wrapper, .about-grid { display: grid; grid-template-columns: 1fr; }
+    /* ── RESPONSIVE ENGINE & BREAKPOINTS ── */
+    @media(max-width:1150px) {
       .project-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero { padding: 140px 0 60px; }
-      .hero-image { order: -1; margin-bottom: 20px; }
-      .hero h1 { font-size: 3.5rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    
+
+    @media(max-width:1024px) {
+      .hero-wrapper { grid-template-columns: 1fr; justify-content: center; text-align: center; padding: 0; }
+      .hero { padding: 140px 0 40px; }
+      .hero-text-block { align-items: center; text-align: center; padding-left: 0; }
+      .hero-image { order: -1; margin-bottom: 25px; padding-right: 0; }
+      .hero p { margin-inline: auto; }
+      .hero-buttons { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+        
     @media(max-width:768px) {
-      section { padding: 70px 0; }
       .menu-toggle { display: block; }
+      .nav-btn.desktop-only { display: none; }
+      
+      .nav-btn.mobile-only { 
+        display: inline-block; 
+        margin-top: 25px; 
+        padding: 12px 36px; 
+        width: auto; 
+        min-width: 160px;
+        white-space: nowrap; /* Forces text to stay in a single row */
+        height: auto;
+        border-radius: 50px; 
+        text-align: center;
+        font-size: 1rem;
+        color: #ffffff !important;
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+      }
       .nav-links {
         position: fixed;
         top: 80px;
@@ -556,22 +580,18 @@
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         align-items: center;
-        padding-top: 60px;
-        gap: 40px;
+        padding: 40px 20px;
+        gap: 25px;
         transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         border-top: 1px solid var(--border);
+        overflow-y: auto;
       }
       .nav-links.open { left: 0; }
-      .nav-links a { font-size: 1.2rem; }
-      .nav-right { gap: 20px; }
-      .hero h1 { font-size: 2.8rem; }
-      .section-title h2, .contact-box h2 { font-size: 2.2rem; }
-      .profile-card { width: 300px; height: 300px; }
-      .contact-box { padding: 50px 20px; }
-    }
-
-    @media (max-width: 650px) {
+      .nav-links a { font-size: 1.2rem; width: 100%; text-align: center; display: block; padding: 10px; color: #ffffff; }
+      .nav-right { gap: 10px; }
       .project-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -588,8 +608,9 @@
             <li><a href="#projects" class="nav-item">Projects</a></li>
             <li><a href="#services" class="nav-item">Services</a></li>
             <li><a href="#contact" class="nav-item">Contact</a></li>
+            <li><a href="https://shop.ayushacharya5.com.np/" class="nav-btn mobile-only">Hire Me</a></li>
           </ul>
-          <a href="https://shop.ayushacharya5.com.np/" class="nav-btn">Hire Me</a>
+          <a href="https://shop.ayushacharya5.com.np/" class="nav-btn desktop-only">Hire Me</a>
           <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation Menu">
             <i class="fas fa-bars"></i>
           </button>
@@ -598,10 +619,9 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="container hero-wrapper" style="display: grid;">
-      <div>
+    <div class="container hero-wrapper">
+      <div class="hero-text-block">
         <h1>Building modern <span class="gradient-text">digital experiences</span> that stand out.</h1>
         <p>I'm Ayush Acharya — a developer, designer, and digital strategist focused on creating fast, modern, and high-converting websites for startups, creators, and businesses.</p>
         <div class="hero-buttons">
@@ -617,7 +637,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="section-title reveal">
@@ -638,7 +657,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <div class="section-title reveal">
@@ -655,7 +673,6 @@
       </div>
 
       <div class="project-grid" id="projectGrid">
-        <!-- Card 1 -->
         <a href="http://thumbnailpro.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
           <span class="tag">Youtube thumbnail downloader</span>
           <div class="card-icon"><i class="fas fa-image"></i></div>
@@ -664,7 +681,6 @@
           <div class="btn-link">Launch App <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <!-- Card 2 -->
         <a href="https://clearbg.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="AI">
           <span class="tag">Computer Vision</span>
           <div class="card-icon"><i class="fas fa-magic"></i></div>
@@ -673,7 +689,6 @@
           <div class="btn-link">Remove BG <i class="fas fa-external-link-alt"></i></div>
         </a>
 
-        <!-- Card 3 -->
         <a href="https://aajakosamachar.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
           <span class="tag">News</span>
           <div class="card-icon"><i class="fas fa-newspaper"></i></div>
@@ -682,7 +697,6 @@
           <div class="btn-link">Read <i class="fas fa-link"></i></div>
         </a>
 
-        <!-- Card 4 -->
         <a href="https://learn.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Media">
           <span class="tag">Education</span>
           <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -691,7 +705,6 @@
           <div class="btn-link">Learn <i class="fas fa-play"></i></div>
         </a>
 
-        <!-- Card 5 -->
         <a href="https://noteit.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
           <span class="tag">Productivity</span>
           <div class="card-icon"><i class="fas fa-sticky-note"></i></div>
@@ -700,7 +713,6 @@
           <div class="btn-link">Open <i class="fas fa-edit"></i></div>
         </a>
 
-        <!-- Card 6 -->
         <a href="https://passportpro.ayushacharya5.com.np" target="_blank" rel="noopener" class="project-card reveal" data-category="AI">
           <span class="tag">Utility</span>
           <div class="card-icon"><i class="fas fa-id-card"></i></div>
@@ -709,7 +721,6 @@
           <div class="btn-link">Resize <i class="fas fa-crop"></i></div>
         </a>
 
-        <!-- Card 7 -->
         <a href="https://instacode.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
           <span class="tag">Utility</span>
           <div class="card-icon"><i class="fa fa-code"></i></div>
@@ -718,7 +729,6 @@
           <div class="btn-link">Code it <i class="fas fa-code"></i></div>
         </a>
 
-        <!-- Card 8 -->
         <a href="https://fluxpdf.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
           <span class="tag">Utility</span>
           <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
@@ -727,7 +737,6 @@
           <div class="btn-link">Open <i class="fas fa-arrow-right"></i></div>
         </a>
 
-        <!-- Card 9 -->
         <a href="https://pdftodoc.ayushacharya5.com.np/" target="_blank" rel="noopener" class="project-card reveal" data-category="Utility">
           <span class="tag">Utility</span>
           <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
@@ -739,7 +748,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <div class="section-title reveal">
@@ -772,7 +780,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <div class="contact-box reveal">
@@ -785,7 +792,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container footer-content">
       <p>© 2026 Ayush Acharya</p>
@@ -802,7 +808,7 @@
     // --- MOBILE MENU ENGINE ---
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    const navItems = document.querySelectorAll('.nav-item');
+    const navItems = document.querySelectorAll('.nav-item, .nav-links .nav-btn');
     const toggleIcon = menuToggle.querySelector('i');
 
     function toggleMenu() {
@@ -831,7 +837,7 @@
 
         projects.forEach(card => {
           const cardCategory = card.getAttribute('data-category');
-          
+                    
           if (filterValue === 'all' || cardCategory === filterValue) {
             card.style.display = 'flex';
             card.style.animation = 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards';
@@ -861,7 +867,7 @@
 
     // --- SCROLL SPY MECHANISM ---
     const sections = document.querySelectorAll('section');
-    const dynamicLinks = document.querySelectorAll('.nav-links a');
+    const dynamicLinks = document.querySelectorAll('.nav-links a.nav-item');
 
     window.addEventListener('scroll', () => {
       let currentSectionId = "";
